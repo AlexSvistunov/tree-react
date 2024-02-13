@@ -1,0 +1,25 @@
+.header {
+  padding: 30px 0;
+}
+
+.header__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-list {
+  display: flex;
+  gap: 32px;
+}
+
+
+
+.logo {
+  background-image: url('../../images/logo.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  width: 70px;
+  height: 70px;
+}
