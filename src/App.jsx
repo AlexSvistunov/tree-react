@@ -5,15 +5,12 @@ import './App.css'
 import Header from './components/Header/Header'
 import Discounts from './components/Discounts/Discounts'
 import Contact from './components/Contact/Contact'
+import Routes from './components/Routes/AppRoutes'
 
 function App() {
   return (
     <div>
-      <Header/>
-      <main>
-        <Discounts/>
-        <Contact/>
-      </main>
+      <Routes></Routes>
     </div>
   )
 }
