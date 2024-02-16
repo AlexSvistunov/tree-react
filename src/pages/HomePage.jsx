@@ -13,10 +13,10 @@ const HomePage = () => {
       <Header/>
       <main>
         <Discounts/>
-        <Contact/>
         <Categories/>
         {/* <FirstOrder/> */}
         <Sale/>
+        <Contact/>
       </main>
     </div>
   )

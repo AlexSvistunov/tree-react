@@ -6,8 +6,10 @@ import Header from './components/Header/Header'
 import Discounts from './components/Discounts/Discounts'
 import Contact from './components/Contact/Contact'
 import Routes from './components/Routes/AppRoutes'
+import getCategories from './requests'
 
 function App() {
+  getCategories()
   return (
     <div>
       <Routes></Routes>
