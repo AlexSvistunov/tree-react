@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Categories.css";
 import { useSelector, useDispatch } from "react-redux";
 import { getCategories } from "../../store/categoriesSlice";
+import Category from "./Category";
 
 const Categories = () => {
-  const dispatch = useDispatch();
-  // const categoriesList = dispatch(getCategories());
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(getCategories())
+  }, [dispatch])
+  
+  const categoriesList = useSelector(state => state.categories.categoriesList)
+  console.log(categoriesList)
 
   return (
     <section className="categories">
@@ -16,39 +22,8 @@ const Categories = () => {
         </div>
 
         <ul className="categories__list list-reset">
-          <li className="categories__item">
-            <img
-              className="categories__item-img"
-              src="./src/images/categories-1.jpg"
-            ></img>
-            <h3 className="categories__item-name">Fertilizer</h3>
-          </li>
-
-          <li className="categories__item">
-            <img
-              className="categories__item-img"
-              src="./src/images/categories-2.jpg"
-            ></img>
-            <h3 className="categories__item-name">
-              Protective products and septic tanks
-            </h3>
-          </li>
-
-          <li className="categories__item">
-            <img
-              className="categories__item-img"
-              src="./src/images/categories-3.jpg"
-            ></img>
-            <h3 className="categories__item-name">Planting material </h3>
-          </li>
-
-          <li className="categories__item">
-            <img
-              className="categories__item-img"
-              src="./src/images/categories-4.jpg"
-            ></img>
-            <h3 className="categories__item-name">Tools and equipment</h3>
-          </li>
+          {categoriesList && categoriesList.map(category => <Category key={category.id} category={category}></Category>)}
+        
         </ul>
       </div>
     </section>
