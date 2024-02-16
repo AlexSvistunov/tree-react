@@ -6,7 +6,7 @@ const Sale = () => {
     <section className="sale">
       <div className="container">
         <h2 className="sale__title section-title">Sale</h2>
-        <ul className="sale__list">
+        <ul className="sale__list list-reset">
           <li className="sale__list-item sale-item">
             <div className="sale-item__imgbox">
               <div className="sale-item__sale">-50%</div>

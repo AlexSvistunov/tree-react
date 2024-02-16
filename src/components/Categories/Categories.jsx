@@ -5,7 +5,7 @@ import { getCategories } from "../../store/categoriesSlice";
 
 const Categories = () => {
   const dispatch = useDispatch();
-  const categoriesList = dispatch(getCategories());
+  // const categoriesList = dispatch(getCategories());
 
   return (
     <section className="categories">

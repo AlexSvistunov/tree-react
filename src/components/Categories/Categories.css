@@ -1,5 +1,5 @@
 .categories {
-    padding-bottom: var(--section-gap);
+    padding: var(--section-gap) 0;
 }
 
 .categories__title {
@@ -9,6 +9,8 @@
 .categories__inner {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    margin-bottom: 40px;
 }
 
 
@@ -22,6 +24,7 @@
     line-height: 126%;
     text-align: center;
     color: var(--grey);
+    cursor: pointer;
 }
 
 .categories__list {
