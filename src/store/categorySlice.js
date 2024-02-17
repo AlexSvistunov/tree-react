@@ -8,7 +8,6 @@ const getCategory = createAsyncThunk(
   }
 )
 
-
 const categorySlice = createSlice({
   name: 'category',
   initialState: {

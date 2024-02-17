@@ -1,12 +1,12 @@
 import { Link, useParams } from "react-router-dom";
 const Category = ({ category }) => {
   const categoryLink = category.title.toLowerCase().split('').filter(letter => letter !== ' ').join('')
+  console.log(categoryLink);
   // const {title} = useParams()
   // console.log(title);
-
   return (
     <li className="categories__item">
-      <Link to={categoryLink}>
+      <Link to={categoryLink + '/' + category.id}>
         <img
           className="categories__item-img"
           src={`./backend/public/${category.image}`}

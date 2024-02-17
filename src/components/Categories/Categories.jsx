@@ -2,17 +2,14 @@ import React, { useEffect } from "react";
 import "./Categories.css";
 import { useSelector, useDispatch } from "react-redux";
 import { getCategories } from "../../store/categoriesSlice";
+import { useGetProductsQuery } from "../../store/apiSlice";
 import Category from "./Category";
 
 const Categories = () => {
-  const dispatch = useDispatch()
-  useEffect(() => {
-    dispatch(getCategories())
-  }, [dispatch])
-  
-  const categoriesList = useSelector(state => state.categories.categoriesList)  
-  console.log(categoriesList)
 
+  const request = useGetProductsQuery()
+  const categoriesList = request.data
+// desctructuring, loader spinner
   return (
     <section className="categories">
       <div className="container">
@@ -22,8 +19,10 @@ const Categories = () => {
         </div>
 
         <ul className="categories__list list-reset">
-          {categoriesList && categoriesList.map(category => <Category key={category.id} category={category}></Category>)}
-        
+          {categoriesList &&
+            categoriesList.map((category) => (
+              <Category key={category.id} category={category}></Category>
+            ))}
         </ul>
       </div>
     </section>

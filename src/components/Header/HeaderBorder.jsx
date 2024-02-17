@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 const HeaderBorder = () => {
   return (
     <>
-      <header className="header" style={{borderBottom: '1px solid var(--grey-divider)'}}>
+      <header className="header" style={{borderBottom: '1px solid var(--grey-divider)', marginBottom: '125px'}}>
         <div className="container">
           <div className="header__container">
             <a className="logo header__logo" href="#"></a>

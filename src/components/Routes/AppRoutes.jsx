@@ -9,7 +9,6 @@ import ROUTES from '../../utils/routes'
 import SingleCategory from '../Categories/SingleCategory'
 
 
-
 const AppRoutes = () => {
   return (
     <div>

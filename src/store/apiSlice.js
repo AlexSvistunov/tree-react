@@ -9,7 +9,7 @@ export const apiSlice = createApi({
       query: () => `categories/all`
     }),
     getProduct: builder.query({
-      query: (title) => `categories/${title}`
+      query: (id) => `categories/${id}`
     })
   })
 })
