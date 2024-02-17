@@ -6,6 +6,7 @@ import AllSales from '../../pages/AllSales'
 import CartPage from '../../pages/CartPage'
 import CategoriesPage from '../../pages/CategoriesPage'
 import ROUTES from '../../utils/routes'
+import SingleCategory from '../Categories/SingleCategory'
 
 
 
@@ -18,6 +19,7 @@ const AppRoutes = () => {
         <Route path={ROUTES.ALLSALES} element={<AllSales/>}></Route>
         <Route path={ROUTES.CART} element={<CartPage/>}></Route>
         <Route path={ROUTES.CATEGORIES} element={<CategoriesPage/>}></Route>
+        <Route path={ROUTES.CATEGORY} element={<SingleCategory/>}></Route>
       </Routes>
     </div>
   )

@@ -1,9 +1,10 @@
-import { Link } from "react-router-dom";
-import "./Header.css";
-const Header = () => {
+import React from 'react'
+import { Link } from 'react-router-dom'
+
+const HeaderBorder = () => {
   return (
     <>
-      <header className="header">
+      <header className="header" style={{borderBottom: '1px solid var(--grey-divider)'}}>
         <div className="container">
           <div className="header__container">
             <a className="logo header__logo" href="#"></a>
@@ -47,7 +48,7 @@ const Header = () => {
         </div>
       </header>
     </>
-  );
-};
+  )
+}
 
-export default Header;
+export default HeaderBorder

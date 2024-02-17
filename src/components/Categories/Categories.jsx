@@ -10,7 +10,7 @@ const Categories = () => {
     dispatch(getCategories())
   }, [dispatch])
   
-  const categoriesList = useSelector(state => state.categories.categoriesList)
+  const categoriesList = useSelector(state => state.categories.categoriesList)  
   console.log(categoriesList)
 
   return (
