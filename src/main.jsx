@@ -22,3 +22,4 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 // yandex or google map
 // categories link from homepage
 //categories page differs from categories section(button)
+// section categories has 4 category as the layout in figma has, but there's button to check out all the sales and categories
