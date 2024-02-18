@@ -1,13 +1,21 @@
 import React from "react";
 import './Sale.css'
+import { useGetProductsQuery } from "../../store/apiSlice";
+import SaleItem from "./SaleItem";
 
 const Sale = () => {
+  const query = useGetProductsQuery()
+  const data = query && query.data
+  const sales = data && data.filter(product => product['discont_price'])
   return (
     <section className="sale">
       <div className="container">
         <h2 className="sale__title section-title">Sale</h2>
         <ul className="sale__list list-reset">
-          <li className="sale__list-item sale-item">
+        {sales && sales.map((product) => (
+          <SaleItem key={product.id} product={product}></SaleItem>
+        ))}
+          {/* <li className="sale__list-item sale-item">
             <div className="sale-item__imgbox">
               <div className="sale-item__sale">-50%</div>
               <img
@@ -65,7 +73,7 @@ const Sale = () => {
               <span className="sale-item__currentprice">$199</span>
               <span className="sale-item__oldprice">$240</span>
             </div>
-          </li>
+          </li> */}
         </ul>
       </div>
     </section>

@@ -21,3 +21,4 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 // sale request instead of static
 // yandex or google map
 // categories link from homepage
+//categories page differs from categories section(button)
