@@ -1,0 +1,13 @@
+.product__container {
+  display: flex;
+  gap: 32px;
+}
+
+.product__img {
+  border-radius: 12px;
+}
+
+.product-about__prices {
+  display: flex;
+  gap: 32px;
+}

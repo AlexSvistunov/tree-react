@@ -5,6 +5,7 @@ import Product from "./Product";
 const Products = () => {
   const query = useGetProductsQuery();
   const { data } = query;
+  console.log(data);
   return (
     <section className="products">
       <div className="container">

@@ -7,6 +7,7 @@ import CartPage from '../../pages/CartPage'
 import CategoriesPage from '../../pages/CategoriesPage'
 import ROUTES from '../../utils/routes'
 import SingleCategory from '../Categories/SingleCategory'
+import SingleProduct from '../Products/SingleProduct'
 
 
 const AppRoutes = () => {
@@ -19,6 +20,7 @@ const AppRoutes = () => {
         <Route path={ROUTES.CART} element={<CartPage/>}></Route>
         <Route path={ROUTES.CATEGORIES} element={<CategoriesPage/>}></Route>
         <Route path={ROUTES.CATEGORY} element={<SingleCategory/>}></Route>
+        <Route path={ROUTES.PRODUCT} element={<SingleProduct/>}></Route>
       </Routes>
     </div>
   )
