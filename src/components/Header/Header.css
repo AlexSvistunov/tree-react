@@ -18,6 +18,16 @@
   font-size: 20px;
   line-height: 130%;
   color: var(--black);
+  transition: 0.25s color ease-in-out;
+}
+
+.nav-list__item a:hover {
+  color: var(--green);
+  transition: 0.25s color ease-in-out;
+}
+
+.nav-list__item a:focus-visible {
+  outline: 2px solid var(--green);
 }
 
 

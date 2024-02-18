@@ -1,10 +1,15 @@
 
+import HeaderBorder from "../components/Header/HeaderBorder";
+import Contact from "../components/Contact/Contact";
+import NotFound from "../components/NotFound/NotFound";
 const NotFoundPage = () => {
   return (
-    <div style={{height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-      <h1>NOT FOUND PAGE!!!</h1>
-    </div>
-  )
-}
+    <>
+      <HeaderBorder />
+      <NotFound/>
+      <Contact/>
+    </>
+  );
+};
 
-export default NotFoundPage
+export default NotFoundPage;

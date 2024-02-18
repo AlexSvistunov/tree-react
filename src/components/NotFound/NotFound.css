@@ -1,0 +1,50 @@
+.not-found__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.not-found__img {
+  margin-bottom: 32px;
+}
+
+.not-found__title {
+  font-weight: 700;
+  font-size: 64px;
+  line-height: 110%;
+  text-align: center;
+  color: var(--black);
+  margin: 0;
+  margin-bottom: 16px;
+}
+
+.not-found__descr {
+  margin: 0;
+  margin-bottom: 32px;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 130%;
+  text-align: center;
+  color: var(--grey);
+}
+
+.not-found__inner {
+  max-width: 664px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.not-found__link {
+  border-radius: 6px;
+  padding: 16px 56px;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 130%;
+  text-align: center;
+  color: var(--white);
+  cursor: pointer;
+  background-color: var(--green);
+}

@@ -13,7 +13,7 @@ import NotFoundPage from '../../pages/NotFoundPage'
 
 const AppRoutes = () => {
   return (
-    <div>
+    <>
       <Routes>
         <Route index element={<HomePage/>}></Route>
         <Route path={ROUTES.ALLPRODUCTS} element={<AllProductsPage/>}></Route>
@@ -24,7 +24,7 @@ const AppRoutes = () => {
         <Route path={ROUTES.PRODUCT} element={<SingleProduct/>}></Route>
         <Route path='*' element={<NotFoundPage/>}></Route>
       </Routes>
-    </div>
+    </>
   )
 }
 

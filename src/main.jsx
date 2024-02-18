@@ -23,3 +23,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 // categories link from homepage
 //categories page differs from categories section(button)
 // section categories has 4 category as the layout in figma has, but there's button to check out all the sales and categories
+// make cards categories
+// product card component or css class
+// sort just class sort

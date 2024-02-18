@@ -1,9 +1,13 @@
 .discounts {
-  padding-bottom: var(--section-gap);
   background-image: url('../../images/discounts-img.png');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+}
+
+.discounts__title {
+  margin: 0;
+  margin-bottom: 40px;
 }
 
 

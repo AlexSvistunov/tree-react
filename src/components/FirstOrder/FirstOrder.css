@@ -24,8 +24,6 @@
     display: flex;
     gap: 32px;
     border-radius: 12px;
-    /* padding: 32px 32px 0px 32px; */
-    min-height: 486px;
 }
 
 .first-order__form {

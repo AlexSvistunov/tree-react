@@ -10,9 +10,9 @@ import Routes from './components/Routes/AppRoutes'
 
 function App() {
   return (
-    <div>
+    <>
       <Routes></Routes>
-    </div>
+    </>
   )
 }
 

@@ -9,7 +9,7 @@ import Sale from '../components/Sale/Sale'
 
 const HomePage = () => {
   return (
-    <div>
+    <>
       <Header/>
       <main>
         <Discounts/>
@@ -18,7 +18,7 @@ const HomePage = () => {
         <Sale/>
         <Contact/>
       </main>
-    </div>
+    </>
   )
 }
 

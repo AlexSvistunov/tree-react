@@ -22,7 +22,7 @@ const FirstOrder = () => {
               <input
                 className="first-order__input"
                 placeholder="Phone number"
-                type="phone"
+                type="tel"
               ></input>
               <input
                 className="first-order__input"

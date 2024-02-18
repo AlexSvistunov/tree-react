@@ -4,10 +4,10 @@ import HeaderBorder from '../components/Header/HeaderBorder'
 
 const AllProductsPage = () => {
   return (
-    <div>
+    <>
       <HeaderBorder/>
       <Products></Products>
-    </div>
+    </>
   )
 }
 
