@@ -8,6 +8,7 @@ import CategoriesPage from '../../pages/CategoriesPage'
 import ROUTES from '../../utils/routes'
 import SingleCategory from '../Categories/SingleCategory'
 import SingleProduct from '../Products/SingleProduct'
+import NotFoundPage from '../../pages/NotFoundPage'
 
 
 const AppRoutes = () => {
@@ -21,6 +22,7 @@ const AppRoutes = () => {
         <Route path={ROUTES.CATEGORIES} element={<CategoriesPage/>}></Route>
         <Route path={ROUTES.CATEGORY} element={<SingleCategory/>}></Route>
         <Route path={ROUTES.PRODUCT} element={<SingleProduct/>}></Route>
+        <Route path='*' element={<NotFoundPage/>}></Route>
       </Routes>
     </div>
   )
