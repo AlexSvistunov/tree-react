@@ -2,12 +2,12 @@ import React, { useEffect } from "react";
 import "./Categories.css";
 import { useSelector, useDispatch } from "react-redux";
 import { getCategories } from "../../store/categoriesSlice";
-import { useGetProductsQuery } from "../../store/apiSlice";
+import { useGetCategoriesQuery } from "../../store/apiSlice";
 import Category from "./Category";
 
 const Categories = () => {
 
-  const request = useGetProductsQuery()
+  const request = useGetCategoriesQuery()
   const categoriesList = request.data
 // desctructuring, loader spinner
   return (

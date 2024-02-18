@@ -5,13 +5,21 @@ export const apiSlice = createApi({
   reducerPath: 'categoriesApi',
   baseQuery: fetchBaseQuery({baseUrl: URL}),
   endpoints: (builder) => ({
-    getProducts: builder.query({
+    getCategories: builder.query({
       query: () => `categories/all`
     }),
-    getProduct: builder.query({
+    getCategory: builder.query({
       query: (id) => `categories/${id}`
+    }),
+
+    getProducts: builder.query({
+      query: () => `products/all`
+    }),
+
+    getProduct: builder.query({
+      query: (id) => `products/${id}`
     })
   })
 })
 
-export const {useGetProductsQuery, useGetProductQuery} = apiSlice
+export const {useGetCategoriesQuery, useGetCategoryQuery, useGetProductQuery, useGetProductsQuery} = apiSlice

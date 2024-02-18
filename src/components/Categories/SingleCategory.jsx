@@ -1,12 +1,12 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import HeaderBorder from "../Header/HeaderBorder";
-import { useGetProductQuery } from "../../store/apiSlice";
+import { useGetCategoryQuery } from "../../store/apiSlice";
 import "../Sale/Sale.css";
 import Contact from '../Contact/Contact'
 const SingleCategory = () => {
   const { title, id } = useParams();
-  const a = useGetProductQuery(id);
+  const a = useGetCategoryQuery(id);
   const data = a?.data?.data;
   console.log(data);
   return (
