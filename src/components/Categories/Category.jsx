@@ -6,7 +6,7 @@ const Category = ({ category }) => {
   // console.log(title);
   return (
     <li className="categories__item">
-      <Link to={categoryLink + '/' + category.id}>
+      <Link to={'/categories/' + categoryLink + '/' + category.id}>
         <img
           className="categories__item-img"
           src={`./backend/public/${category.image}`}
