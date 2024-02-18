@@ -1,4 +1,4 @@
-import React from "react";
+
 import { useGetProductsQuery } from "../../store/apiSlice";
 import Product from "./Product";
 

@@ -13,3 +13,11 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     </BrowserRouter>
   </Provider>
 );
+
+
+// header element active with react router NavLink component
+// cart counter in circle
+// all categories line
+// sale request instead of static
+// yandex or google map
+// categories link from homepage

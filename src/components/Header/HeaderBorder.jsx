@@ -1,13 +1,20 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from "react";
+import { Link } from "react-router-dom";
 
 const HeaderBorder = () => {
+  
   return (
     <>
-      <header className="header" style={{borderBottom: '1px solid var(--grey-divider)', marginBottom: '125px'}}>
+      <header
+        className="header"
+        style={{
+          borderBottom: "1px solid var(--grey-divider)",
+          marginBottom: "125px",
+        }}
+      >
         <div className="container">
           <div className="header__container">
-            <a className="logo header__logo" href="#"></a>
+            <Link className="logo header__logo" to="/"></Link>
 
             <nav className="header__nav">
               <ul className="header__nav-list nav-list list-reset">
@@ -48,7 +55,7 @@ const HeaderBorder = () => {
         </div>
       </header>
     </>
-  )
-}
+  );
+};
 
-export default HeaderBorder
+export default HeaderBorder;

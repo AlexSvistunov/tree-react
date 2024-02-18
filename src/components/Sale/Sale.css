@@ -14,6 +14,7 @@
 }
 
 .sale-item {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -86,4 +87,9 @@
     line-height: 130%;
     text-decoration: line-through;
     color: var(--grey);
+}
+
+.item-link {
+    position: absolute;
+    inset: 0;
 }
