@@ -6,11 +6,10 @@ import { useGetCategoriesQuery } from "../../store/apiSlice";
 import Category from "./Category";
 import { Link } from "react-router-dom";
 
-const Categories = () => {
+const AllCategories = () => {
 
   const request = useGetCategoriesQuery()
   const categoriesList = request.data
-// desctructuring, loader spinner
   return (
     <section className="categories">
       <div className="container">
@@ -22,7 +21,7 @@ const Categories = () => {
 
         <ul className="categories__list list-reset">
           {categoriesList &&
-            categoriesList.slice(0,4).map((category) => (
+            categoriesList.map((category) => (
               <Category key={category.id} category={category}></Category>
             ))
           }
@@ -32,6 +31,5 @@ const Categories = () => {
   );
 };
 
-// передавать какую-то строчку и если она есть, то такой-то класс, если нет - то ничего
 
-export default Categories;
+export default AllCategories;

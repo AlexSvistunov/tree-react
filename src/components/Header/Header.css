@@ -40,3 +40,27 @@
   width: 70px;
   height: 70px;
 }
+
+
+.header__cart {
+  position: relative;
+}
+
+.header__cart-circle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 26px;
+  height: 26px;
+  background-color: var(--green);
+  border-radius: 100%;
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 90%;
+  text-align: center;
+  color: var(--white);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

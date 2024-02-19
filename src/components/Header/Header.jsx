@@ -29,7 +29,7 @@ const Header = () => {
             </nav>
 
             <div className="cart header__cart">
-              1
+              <div className="header__cart-circle">1</div>
               <svg
                 width="48"
                 height="48"
