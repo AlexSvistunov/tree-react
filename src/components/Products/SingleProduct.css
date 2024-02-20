@@ -73,6 +73,14 @@
   border-top: 1px solid var(--grey-divider);
   width: 96px;
   height: 58px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 130%;
+  text-align: center;
+  color: var(--black);
 }
 
 .product-about__discount {

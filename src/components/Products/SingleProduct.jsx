@@ -9,7 +9,6 @@ const SingleProduct = () => {
   const request = useGetProductQuery(id);
   const data = request.data;
   const object = data && data[0];
-  console.log(object);
   return (
     <div>
       <HeaderBorder />
@@ -28,17 +27,18 @@ const SingleProduct = () => {
               <span className="product-about__currentprice">
                 {data && '$' + object.price}
               </span>
-              <span className="product-about__oldprice">
-                {data && '$' +  object.discont_price}
-              </span>
 
-              <div className="product-about__discount">-20%</div>
+              {data && object['discont_price'] &&  <span className="product-about__oldprice">
+                {data ? '$' +  object.discont_price : null}
+              </span>}
+
+              {data && object['discont_price'] ? <div className="product-about__discount">-20%</div> : null}
             </div>
 
             <div className="product-about__amount">
               <div className="product-about__inner">
                 <button className="product-about__plus">+</button>
-                <input className="product-about__number" type="number"></input>
+                <div className="product-about__number">1</div>
                 <button className="product-about__minus">-</button>
               </div>
               <button className="product-about__addtocart">Add to cart</button>

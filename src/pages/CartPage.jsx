@@ -1,9 +1,12 @@
 import React from 'react'
+import ShoppingCart from '../components/ShoppingCart/ShoppingCart'
+import Contact from '../components/Contact/Contact'
 
 const CartPage = () => {
   return (
     <>
-      Cart
+      <ShoppingCart/>
+      <Contact/>
     </>
   )
 }
