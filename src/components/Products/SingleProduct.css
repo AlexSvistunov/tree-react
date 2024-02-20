@@ -7,7 +7,143 @@
   border-radius: 12px;
 }
 
+.product-about {
+  max-width: 548px;
+}
+
+.product-about__title {
+  margin: 0;
+  margin-bottom: 32px;
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 110%;
+  letter-spacing: 0.03em;
+  color: var(--black);
+}
+
 .product-about__prices {
+  max-width: 360px;
+  position: relative;
   display: flex;
   gap: 32px;
+  margin-bottom: 32px;
+}
+
+.product-about__currentprice {
+  font-weight: 700;
+  font-size: 64px;
+  line-height: 110%;
+  color: var(--black);
+}
+
+.product-about__oldprice {
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 130%;
+  text-decoration: line-through;
+  color: var(--grey);
+}
+
+.product-about__amount {
+  display: flex;
+  gap: 32px;
+  margin-bottom: 16px;
+}
+
+.product-about__inner {
+  display: flex;
+}
+
+.product-about__plus,
+.product-about__minus {
+  font-size: 24px;
+  background-color: transparent;
+  border: 1px solid var(--grey-divider);
+  border-radius: 6px;
+  width: 58px;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.product-about__number {
+  border-bottom: 1px solid var(--grey-divider);
+  border-top: 1px solid var(--grey-divider);
+  width: 96px;
+  height: 58px;
+}
+
+.product-about__discount {
+  align-self: flex-start;
+  border-radius: 6px;
+  padding: 4px 8px;
+  width: 63px;
+  height: 34px;
+  background: var(--green);
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 130%;
+  letter-spacing: 0.03em;
+  color: var(--white);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.product-about__prices {
+  display: flex;
+  align-items: flex-end;
+  gap: 32px;
+}
+
+.product-about__addtocart {
+  border: none;
+  border-radius: 6px;
+  padding: 16px 32px;
+  width: 316px;
+  height: 58px;
+  background: var(--green);
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 130%;
+  text-align: center;
+  color: var(--white);
+  cursor: pointer;
+}
+
+.product-about__head {
+  margin: 0;
+  margin-bottom: 16px;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 130%;
+  color: var(--black);
+}
+
+
+.product-about__text {
+  margin-bottom: 5px;
+}
+
+.product-about__text p {
+  margin: 0;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 130%;
+  color: var(--black);
+}
+
+.product-about__readmore {
+  margin: 0;
+  border: none;
+  background: transparent;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 130%;
+  text-decoration: underline;
+  text-decoration-skip-ink: none;
+  color: var(--black);
+  cursor: pointer;
 }

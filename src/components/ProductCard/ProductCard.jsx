@@ -3,7 +3,6 @@ import { Link } from "react-router-dom"
 const ProductCard = ({product, imgSrc}) => {
   const price = product.price
   const dicontPrice = product['discont_price']
-  console.log(product);
   const percent = Math.ceil((((dicontPrice  - price) / price) * 100))
   return (
     <li className="product__list-item product-item">

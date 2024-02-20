@@ -64,6 +64,7 @@ const Contact = () => {
             <span className="contact__item-text">24 hours a day</span>
           </li>
         </ul>
+
       </div>
     </section>
   );
