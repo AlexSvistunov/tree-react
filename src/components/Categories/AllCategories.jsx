@@ -15,10 +15,7 @@ const AllCategories = () => {
       <div className="container">
         <div className="categories__inner">
           <h2 className="categories__title section-title">Categories</h2>
-          {/* <button className="categories__btn">All categories</button> */}
-          <Link className="categories__btn" to={'/categories'}>All categories</Link>
         </div>
-
         <ul className="categories__list list-reset">
           {categoriesList &&
             categoriesList.map((category) => (
