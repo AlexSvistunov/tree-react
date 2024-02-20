@@ -19,7 +19,7 @@ const AllCategories = () => {
         <ul className="categories__list list-reset">
           {categoriesList &&
             categoriesList.map((category) => (
-              <Category key={category.id} category={category}></Category>
+              <Category key={category.id} category={category}/>
             ))
           }
         </ul>

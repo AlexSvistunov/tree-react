@@ -1,0 +1,48 @@
+.sort {
+  margin-bottom: 40px;
+  display: flex;
+  gap: 40px;
+}
+
+.sort label {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.sort label span {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 130%;
+  color: var(--black);
+}
+
+.sort__input-price {
+  border: 1px solid var(--grey-divider);
+  border-radius: 6px;
+  padding: 8px 16px;
+  width: 112px;
+  height: 36px;
+}
+
+.sort__input-price::placeholder {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 126%;
+  color: var(--grey);
+}
+
+.sort__input-discount {
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  border: 1px solid var(--grey-divider);
+}
+
+.sort__select {
+  border: 1px solid var(--grey-divider);
+  border-radius: 6px;
+  padding: 8px 8px 8px 16px;
+  width: 200px;
+  height: 36px;
+}

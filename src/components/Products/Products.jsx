@@ -1,6 +1,6 @@
 
 import { useGetProductsQuery } from "../../store/apiSlice";
-import Product from "./Product";
+import ProductCard from '../ProductCard/ProductCard'
 
 const Products = () => {
   const query = useGetProductsQuery();
@@ -38,7 +38,7 @@ const Products = () => {
 
         <ul className="categories__list list-reset">
           {data &&
-            data.map((product) => <Product key={product.id} product={product}></Product>)}
+            data.map((product) => <ProductCard key={product.id} product={product} imgSrc={`../backend/public${product.image}`}/>)}
         </ul>
       </div>
     </section>

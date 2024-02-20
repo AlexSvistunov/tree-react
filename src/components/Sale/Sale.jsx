@@ -1,6 +1,7 @@
 import "./Sale.css";
 import { useGetProductsQuery } from "../../store/apiSlice";
-import SaleItem from "./SaleItem";
+import ProductCard from "../ProductCard/ProductCard";
+import '../ProductCard/ProductCard.css'
 import { Link } from "react-router-dom";
 
 const Sale = () => {
@@ -19,7 +20,7 @@ const Sale = () => {
             sales
               .slice(0, 4)
               .map((product) => (
-                <SaleItem key={product.id} product={product}></SaleItem>
+                <ProductCard key={product.id} product={product} imgSrc={`../backend/public${product.image}`}></ProductCard>
               ))}
         </ul>
       </div>

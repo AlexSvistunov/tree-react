@@ -5,6 +5,8 @@ import { useGetCategoryQuery } from "../../store/apiSlice";
 import "../Sale/Sale.css";
 import Contact from "../Contact/Contact";
 import { Link } from "react-router-dom";
+import ProductCard from "../ProductCard/ProductCard";
+import Sort from "../Sort/Sort";
 const SingleCategory = () => {
   const { title, id } = useParams();
   const a = useGetCategoryQuery(id);
@@ -16,7 +18,7 @@ const SingleCategory = () => {
       <section className="category">
         <div className="container">
           <h1>{title.toUpperCase()}</h1>
-          <div
+          {/* <div
             className="category__sort"
             style={{ marginBottom: "40px", display: "flex", gap: "40px" }}
           >
@@ -46,28 +48,14 @@ const SingleCategory = () => {
                 <option>3</option>
               </select>
             </label>
-          </div>
+          </div> */}
 
-          <ul className="sale__list list-reset">
+          <Sort/>
+
+          <ul className="product__list list-reset">
             {data &&
-              data.map((categoryEl) => (
-                  <li key={categoryEl.id} className="sale__list-item sale-item">
-                    <div className="sale-item__imgbox">
-                      <div className="sale-item__sale">-50%</div>
-                      <Link className="item-link" to={`/products/${id}`}></Link>
-                      <img
-                        className="sale-item__img"
-                        src={`/backend/public/${categoryEl.image}`}
-                      ></img>
-                    </div>
-                    <h3 className="sale-item__title">
-                      Decorative forged bridge
-                    </h3>
-                    <div className="sale-item__prices">
-                      <span className="sale-item__currentprice">$500</span>
-                      <span className="sale-item__oldprice">$1000</span>
-                    </div>
-                  </li>
+              data.map((product) => (
+                  <ProductCard key={product.id} product={product} imgSrc={`/backend/public${product.image}`}/>
               ))}
           </ul>
         </div>

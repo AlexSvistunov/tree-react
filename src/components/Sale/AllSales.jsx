@@ -1,7 +1,7 @@
 
 import './Sale.css'
 import { useGetProductsQuery } from "../../store/apiSlice";
-import SaleItem from "./SaleItem";
+import ProductCard from "../ProductCard/ProductCard";
 
 const AllSales = () => {
   const query = useGetProductsQuery()
@@ -13,7 +13,7 @@ const AllSales = () => {
         <h2 className="sale__title section-title">Sale</h2>
         <ul className="sale__list list-reset">
         {sales && sales.map((product) => (
-          <SaleItem key={product.id} product={product}></SaleItem>
+          <ProductCard key={product.id} product={product} imgSrc={`../backend/public${product.image}`}></ProductCard>
         ))}
         </ul>
       </div>
