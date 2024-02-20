@@ -11,6 +11,7 @@ const ProductCard = ({product, imgSrc}) => {
       <div className="product-item__imgbox">
         {dicontPrice && <div className="product-item__product">{percent}%</div>}
         <img className="product-item__img" src={imgSrc} height={284}></img>
+        <button className="product-item__btn-cart">Add to cart</button>
       </div>
       <h3 className="product-item__title">{product.title}</h3>
       <div className="product-item__prices">

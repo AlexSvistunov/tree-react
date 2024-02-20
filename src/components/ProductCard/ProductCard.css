@@ -82,6 +82,38 @@
   color: var(--grey);
 }
 
+.product-item__btn-cart {
+  margin: 0;
+  padding: 0;
+  border: none;
+  bottom: 16px;
+  left: 16px;
+  right: 16px;
+  position: absolute;
+  opacity: 0;
+  visibility: hidden;
+  border-radius: 6px;
+  padding: 16px 32px;
+  width: 284px;
+  height: 58px;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 130%;
+  text-align: center;
+  color: var(--white);
+  background-color: var(--green);
+  cursor: pointer;
+}
+
+.product-item__btn-cart:hover {
+  background-color: var(--black);
+}
+
+.product-item:hover .product-item__btn-cart {
+  opacity: 1;
+  visibility: visible;
+}
+
 .product-link {
   position: absolute;
   inset: 0;
