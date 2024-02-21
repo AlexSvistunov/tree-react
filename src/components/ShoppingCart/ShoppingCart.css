@@ -1,5 +1,35 @@
+.cart__title {
+  margin: 0;
+}
+
+.cart__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.cart__btn {
+  border: 1px solid var(--grey-divider);
+  border-radius: 6px;
+  padding: 8px 16px;
+  height: 36px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 126%;
+  text-align: center;
+  color: var(--grey);
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.cart__wrapper {
+  display: flex;
+  gap: 32px;
+}
 
 .cart__list {
+  width: 100%;
   max-width: 780px;
 }
 .cart-item {
@@ -61,4 +91,94 @@
   background-repeat: no-repeat;
   background-size: cover;
   cursor: pointer;
+}
+
+.cart-details {
+  width: 100%;
+  padding: 32px;
+  border-radius: 12px;
+  background: var(--light-grey);
+  max-width: 548px;
+}
+
+.cart-details__title {
+  margin: 0;
+  margin-bottom: 24px;
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 110%;
+  color: var(--black);
+}
+
+.cart-details__items {
+  display: block;
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 130%;
+  color: var(--grey);
+}
+
+.cart-details__total {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 32px;
+}
+
+.cart-details__total-head {
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 130%;
+  color: var(--grey);
+}
+
+
+.cart-details__total-sum {
+  font-weight: 700;
+  font-size: 64px;
+  line-height: 110%;
+  color: var(--black);
+}
+
+.cart-order {
+  display: flex;
+  flex-direction: column;
+}
+
+.cart-order__inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cart-order__input {
+  border: 1px solid var(--grey-divider);
+  border-radius: 6px;
+  padding: 16px 32px;
+  width: 484px;
+  height: 58px;
+  font-size: 22px;
+}
+
+.cart-order__input::placeholder {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 130%;
+  color: var(--grey);
+}
+
+.cart-order__btn {
+  border-radius: 6px;
+  padding: 16px 32px;
+  width: 100%;
+  min-height: 58px;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 130%;
+  text-align: center;
+  color: var(--white);
+  background-color: var(--green);
+  cursor: pointer;
+  border: none;
+  margin-top: 32px;
 }

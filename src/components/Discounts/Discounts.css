@@ -22,8 +22,20 @@
 
 .discounts__title {
   font-weight: 700;
-font-size: 96px;
-line-height: 110%;
-color: var(--white);
+  font-size: 96px;
+  line-height: 110%;
+  color: var(--white);
+}
+
+.discounts__link {
+  border-radius: 6px;
+  padding: 16px 56px;
+  height: 58px;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 130%;
+  text-align: center;
+  color: var(--white);
+  background-color: var(--green);
 }
 

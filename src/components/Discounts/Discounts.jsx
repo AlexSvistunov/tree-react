@@ -1,6 +1,7 @@
 import React from "react";
 import Button from "../Button/Button";
 import "./Discounts.css";
+import { Link } from "react-router-dom";
 const Discounts = () => {
   return (
     <section className="discounts">
@@ -10,7 +11,7 @@ const Discounts = () => {
             Amazing Discounts on Garden Products!
           </h1>
 
-          <Button text={"Check out"} />
+          <Link className="discounts__link" to={'/products'}>Check out</Link>
         </div>
       </div>
     </section>
