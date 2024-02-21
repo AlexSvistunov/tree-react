@@ -1,7 +1,6 @@
 import "./Sort.css";
 
-const Sort = ({sale}) => {
-  console.log(sale);
+const Sort = ({sale, isChecked, setIsChecked, handleCheckboxChange}) => {
   return (
     <div
       className="sort">
@@ -13,7 +12,7 @@ const Sort = ({sale}) => {
 
       <label className={sale ? 'sale-hidden' : null}>
         <span>Discounted items</span>
-        <input className="sort__input-discount" type="checkbox"></input>
+        <input className="sort__input-discount" type="checkbox" checked={isChecked} onChange={handleCheckboxChange}></input>
       </label>
 
       <label>
