@@ -1,20 +1,29 @@
 
+import { useDispatch, useSelector } from "react-redux";
 import { useGetProductsQuery } from "../../store/apiSlice";
 import ProductCard from '../ProductCard/ProductCard'
 import Sort from '../Sort/Sort'
 import './Products.css'
+import { useEffect } from "react";
+import { getProducts } from "../../store/productsSlice";
 
 const Products = () => {
-  const query = useGetProductsQuery();
-  const { data } = query;
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(getProducts())
+  }, [dispatch])
+
+  const productsList = useSelector(state => state.products.productsList)
+  // const query = useGetProductsQuery();
+  // const { data } = query;
   return (
     <section className="products">
       <div className="container">
         <h1 className="products__title section-title">All products</h1>
         <Sort/>
         <ul className="product__list list-reset">
-          {data &&
-            data.map((product) => <ProductCard key={product.id} product={product} imgSrc={`../backend/public${product.image}`}/>)}
+          {productsList &&
+            productsList.map((product) => <ProductCard key={product.id} product={product} imgSrc={`../backend/public${product.image}`}/>)}
         </ul>
       </div>
     </section>

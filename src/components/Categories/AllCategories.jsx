@@ -7,9 +7,13 @@ import Category from "./Category";
 import { Link } from "react-router-dom";
 
 const AllCategories = () => {
+  const dispatch = useDispatch()
 
-  const request = useGetCategoriesQuery()
-  const categoriesList = request.data
+  useEffect(() => {
+    dispatch(getCategories())
+  }, [dispatch])
+  
+  const categoriesList = useSelector(state => state.categories.categoriesList)
   return (
     <section className="categories" style={{paddingTop: 0}}>
       <div className="container">

@@ -26,3 +26,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 // make cards categories
 // product card component or css class
 // sort just class sort
+
+// maybe I should pass props to categories and AllCategories with data, useEffect, ..., etc should be in the page component
+// <Contact> everywhere even in allProducts, allSales, cart etc
