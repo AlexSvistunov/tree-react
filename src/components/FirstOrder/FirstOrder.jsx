@@ -1,4 +1,4 @@
-import React from "react";
+
 import "./FirstOrder.css";
 
 const FirstOrder = () => {

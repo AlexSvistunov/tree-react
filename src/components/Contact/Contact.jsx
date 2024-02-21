@@ -1,4 +1,4 @@
-
+import { YMaps, Map } from "@pbe/react-yandex-maps";
 import "./Contact.css";
 
 const Contact = () => {
@@ -7,7 +7,10 @@ const Contact = () => {
       <div className="container">
         <h2 className="contact__title section-title">Contacts</h2>
 
-        <ul className="contact__list list-reset">
+        <ul
+          className="contact__list list-reset"
+          style={{ marginBottom: "32px" }}
+        >
           <li className="contact__item contact__item--big">
             <h3 className="contact__item-head">Phone</h3>
             <a href="tel:74993506604" className="contact__item-phone">
@@ -65,6 +68,13 @@ const Contact = () => {
           </li>
         </ul>
 
+        <YMaps>
+          <Map
+            id="map"
+            defaultState={{ center: [55.713534, 37.63178], zoom: 15 }}
+            style={{ width: "100%", height: "350px" }}
+          />
+        </YMaps>
       </div>
     </section>
   );
