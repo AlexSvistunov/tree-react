@@ -11,7 +11,7 @@ const AllCategories = () => {
   const request = useGetCategoriesQuery()
   const categoriesList = request.data
   return (
-    <section className="categories">
+    <section className="categories" style={{paddingTop: 0}}>
       <div className="container">
         <div className="categories__inner">
           <h2 className="categories__title section-title">Categories</h2>

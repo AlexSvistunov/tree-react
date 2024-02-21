@@ -46,3 +46,7 @@
   width: 200px;
   height: 36px;
 }
+
+.sale .sale-hidden {
+  display: none;
+}

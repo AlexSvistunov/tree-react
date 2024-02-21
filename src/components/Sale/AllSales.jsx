@@ -2,6 +2,7 @@
 import './Sale.css'
 import { useGetProductsQuery } from "../../store/apiSlice";
 import ProductCard from "../ProductCard/ProductCard";
+import Sort from '../Sort/Sort'
 
 const AllSales = () => {
   const query = useGetProductsQuery()
@@ -10,7 +11,8 @@ const AllSales = () => {
   return (
     <section className="sale">
       <div className="container">
-        <h2 className="sale__title section-title">Sale</h2>
+        <h1 className="sale__title section-title">Discounted items</h1>
+        <Sort sale={true}/>
         <ul className="sale__list list-reset">
         {sales && sales.map((product) => (
           <ProductCard key={product.id} product={product} imgSrc={`../backend/public${product.image}`}></ProductCard>

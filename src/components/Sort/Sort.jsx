@@ -1,6 +1,7 @@
 import "./Sort.css";
 
-const Sort = () => {
+const Sort = ({sale}) => {
+  console.log(sale);
   return (
     <div
       className="sort">
@@ -10,7 +11,7 @@ const Sort = () => {
         <input className="sort__input-price" placeholder="to" type="number"></input>
       </label>
 
-      <label>
+      <label className={sale ? 'sale-hidden' : null}>
         <span>Discounted items</span>
         <input className="sort__input-discount" type="checkbox"></input>
       </label>
