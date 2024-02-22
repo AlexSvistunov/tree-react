@@ -25,6 +25,10 @@ const productsSlice = createSlice({
   reducers: {
     filterByDiscounted: (state, payload) => {
       state.filtered = state.productsList.filter(product => product['discont_price'])
+    },
+
+    filterByPrice: (state, payload) => {
+      state.filtered = state.productsList.filter(product => product.price === payload)
     }
   },
 
@@ -45,6 +49,6 @@ const productsSlice = createSlice({
   },
 })
 
-export const {filterByDiscounted} = productsSlice.actions
+export const {filterByDiscounted, filterByPrice} = productsSlice.actions
 
 export default productsSlice.reducer
