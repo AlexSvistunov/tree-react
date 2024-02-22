@@ -52,6 +52,8 @@ const Products = () => {
   });
 
   filteredProducts.sort((a, b) => a.price - b.price);
+  // тож самое но в filtered в redux
+  // или же вообще без этого просто в тупую
 
 
   return (
