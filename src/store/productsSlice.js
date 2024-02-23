@@ -31,9 +31,10 @@ const productsSlice = createSlice({
 
     },
 
-
     filterByPriceRange: (state, action) => {
       const { priceFrom, priceTo } = action.payload;
+      console.log(priceFrom);
+      console.log(priceTo);
       state.productsList = state.productsList.filter(product => product.price >= priceFrom && product.price <= priceTo);
     },
   },

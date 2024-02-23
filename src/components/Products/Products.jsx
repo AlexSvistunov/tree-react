@@ -33,14 +33,6 @@ const Products = () => {
     dispatch(filterByPriceRange({ priceFrom, priceTo }));
   };
 
-  const handlePriceFrom = (value) => {
-    setPriceFrom(value)
-  }
-
-  const handlePriceTo = (value) => {
-    setPriceTo(value)
-  }
-
   return (
     <section className="products">
       <div className="container">
@@ -48,9 +40,9 @@ const Products = () => {
         <Sort
           isChecked={isChecked}
           handleCheckboxChange={handleCheckboxChange}
-          handlePriceFrom={handlePriceFrom}
+          setPriceFrom={setPriceFrom}
           priceFrom={priceFrom}
-          handlePriceTo={handlePriceTo}
+          setPriceTo={setPriceTo}
           priceTo={priceTo}
           handlePriceRangeChange={handlePriceRangeChange}
         />

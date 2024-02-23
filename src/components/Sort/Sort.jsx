@@ -4,9 +4,9 @@ const Sort = ({
   sale,
   isChecked,
   handleCheckboxChange,
-  handlePriceFrom,
+  setPriceFrom,
   priceFrom,
-  handlePriceTo,
+  setPriceTo,
   priceTo,
   handlePriceRangeChange,
 }) => {
@@ -18,8 +18,7 @@ const Sort = ({
           className="sort__input-price"
           value={priceFrom}
           onChange={(e) => {
-            handlePriceFrom(Number(e.target.value));
-            handlePriceRangeChange();
+            setPriceFrom(e.target.value)
           }}
           placeholder="from"
         ></input>
@@ -27,8 +26,7 @@ const Sort = ({
           className="sort__input-price"
           value={priceTo}
           onChange={(e) => {
-            handlePriceTo(Number(e.target.value));
-            handlePriceRangeChange();
+            setPriceTo(e.target.value)
           }}
           placeholder="to"
         ></input>
