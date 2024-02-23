@@ -9,76 +9,61 @@ import { filterByDiscounted } from "../../store/productsSlice";
 
 const Products = () => {
   const [isChecked, setIsChecked] = useState(false);
-  const [fromPrice, setFromPrice] = useState('');
-  const [toPrice, setToPrice] = useState('');
-  const [discounted, setDiscounted] = useState(false);
-
+  const [priceFrom, setPriceFrom] = useState(null)
+  const [prices, setPrices] = useState({priceFrom: null, priceTo: null})
 
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getProducts());
   }, [dispatch]);
 
-  useEffect(() => {
-    dispatch(filterByDiscounted());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(filterByDiscounted());
+  // }, [dispatch]);
 
-  useEffect(() => {
-    dispatch(filterByPrice());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(filterByPrice());
+  // }, [dispatch]);
 
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
     dispatch(filterByDiscounted());
   };
 
-  const fromPriceChange = (value) => {
-    setFromPrice(value)
+  const handlePriceFrom = (value) => {
+    const numberValue = Number(value)
+    setPriceFrom(numberValue)
+    dispatch(filterByPrice(numberValue))
   }
-
-  const toPriceChange = (value) => {
-    setToPrice(value)
-  }
-
 
 
   const productsList = useSelector((state) => state.products.productsList);
-  const filtered = useSelector((state) => state.products.filtered);
+  const filteredList = useSelector((state) => state.products.filtered);
 
-  const filteredProducts = productsList.filter(product => {
-    return (!discounted || product.discount_price) &&
-           (!fromPrice || product.price >= parseInt(fromPrice)) &&
-           (!toPrice || product.price <= parseInt(toPrice));
-  });
-
-  filteredProducts.sort((a, b) => a.price - b.price);
-  // тож самое но в filtered в redux
-  // или же вообще без этого просто в тупую
-
+  console.log(productsList);
 
   return (
     <section className="products">
       <div className="container">
         <h1 className="products__title section-title">All products</h1>
         <Sort
-          isChecked={isChecked}
-          setIsChecked={setIsChecked}
           handleCheckboxChange={handleCheckboxChange}
-          fromPriceChange={fromPriceChange}
-          toPriceChange={toPriceChange}
-          fromPrice={fromPrice}
-          toPrice={toPrice}
+          isChecked={isChecked}
+          priceFrom={priceFrom}
+          handlePriceFrom={handlePriceFrom}
+
         />
         <ul className="product__list list-reset">
-          {fromPrice || toPrice
-            ? filteredProducts.map((product) => (
+
+          {filteredList.length
+            ? filteredList.map((product) => (
                 <ProductCard
                   key={product.id}
                   product={product}
                   imgSrc={`../backend/public${product.image}`}
                 />
               ))
-            : productsList.map((product) => (
+            : productsList && productsList.map((product) => (
                 <ProductCard
                   key={product.id}
                   product={product}

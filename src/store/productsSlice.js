@@ -23,15 +23,27 @@ const productsSlice = createSlice({
   },
 
   reducers: {
-    filterByDiscounted: (state, payload) => {
-      state.filtered = state.productsList.filter(product => product['discont_price'])
+    filterByDiscounted: (state) => {
+      if(state.filtered.length) {
+        state.filtered = state.filtered.filter(product => product['discont_price'])
+      } else {
+        state.filtered = state.productsList.filter(product => product['discont_price'])
+      }
+
+   
     },
 
-    filterByPrice: (state, payload) => {
-      state.filtered = state.productsList.filter(product => product.price === payload)
+    filterByPrice: (state, {payload}) => {
+      if(state.filtered.length) {
+        state.filtered = state.filtered.filter(product => product.price > payload)
+      } else {
+        state.filtered = state.productsList.filter(product => product.price > payload)
+      }
+
     }
   },
 
+  // maybe not only filter, but sort too
   extraReducers: (builder) => {
     builder.addCase(getProducts.pending, (state) => {
       state.isLoading = true;
