@@ -22,7 +22,11 @@ const productsSlice = createSlice({
   initialState: {
     productsList: [],
     filtered: [],
+    priceTo: '',
+    priceFrom : '',
   },
+
+  // priceTo, priceFrom
 
   reducers: {
     filterByDiscounted: (state) => {
@@ -39,17 +43,19 @@ const productsSlice = createSlice({
     },
 
     filterByPrice: (state, { payload }) => {
-      const { priceFrom, priceTo } = payload.prices || { priceFrom: 0, priceTo: Infinity };
-      console.log(payload);
-      if (state.filtered.length) {
-        state.filtered = state.filtered.filter(
-          (product) => product.price >= priceFrom && product.price <= priceTo
-        );
-      } else {
-        state.filtered = state.productsList.filter(
-          (product) => product.price >= priceFrom && product.price <= priceTo
-        );
-      }
+      // const { priceFrom, priceTo } = payload.prices || { priceFrom: 0, priceTo: Infinity };
+      // console.log(payload);
+      // if (state.filtered.length) {
+      //   state.filtered = state.filtered.filter(
+      //     (product) => product.price >= priceFrom && product.price <= priceTo
+      //   );
+      // } else {
+      //   state.filtered = state.productsList.filter(
+      //     (product) => product.price >= priceFrom && product.price <= priceTo
+      //   );
+      // }
+      
+
     },
   },
 
