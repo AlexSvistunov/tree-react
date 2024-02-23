@@ -1,13 +1,13 @@
 import "./Sort.css";
 
-const Sort = ({sale, isChecked, handleCheckboxChange, isFrom, handlePriceFrom}) => {
+const Sort = ({sale, isChecked, handleCheckboxChange, prices, handlePrices}) => {
   return (
     <div
       className="sort">
       <label>
         <span>Price</span>
-        <input className="sort__input-price" placeholder="from" value={isFrom} onChange={(e) => handlePriceFrom(e.target.value)}></input>
-        <input className="sort__input-price" placeholder="to"></input>
+        <input className="sort__input-price" placeholder="from" value={prices.priceFrom} onChange={(e) => handlePrices('from', Number(e.target.value))}></input>
+        <input className="sort__input-price" placeholder="to" value={prices.priceTo} onChange={(e) => handlePrices('to', Number(e.target.value))}></input>
       </label>
 
       <label className={sale ? 'sale-hidden' : null}>

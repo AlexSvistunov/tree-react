@@ -9,38 +9,51 @@ import { filterByDiscounted } from "../../store/productsSlice";
 
 const Products = () => {
   const [isChecked, setIsChecked] = useState(false);
-  const [priceFrom, setPriceFrom] = useState(null)
-  const [prices, setPrices] = useState({priceFrom: null, priceTo: null})
+  const [prices, setPrices] = useState({ priceFrom: '', priceTo: ''});
 
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getProducts());
   }, [dispatch]);
 
-  // useEffect(() => {
-  //   dispatch(filterByDiscounted());
-  // }, [dispatch]);
-
-  // useEffect(() => {
-  //   dispatch(filterByPrice());
-  // }, [dispatch]);
 
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
     dispatch(filterByDiscounted());
   };
 
-  const handlePriceFrom = (value) => {
-    const numberValue = Number(value)
-    setPriceFrom(numberValue)
-    dispatch(filterByPrice(numberValue))
-  }
+  console.log(prices);
+  const handlePrices = (state, value) => {
+    if(value === '') return
 
+    if (state === "from") {
+      const upDatedValue = { priceFrom: value };
+      const obj = {...prices, ...upDatedValue}
+      setPrices((prev) => ({
+        ...prev,
+        ...upDatedValue,
+      }));
+      dispatch(filterByPrice(obj))
+
+    }
+
+    if (state === "to") {
+      const upDatedValue = { priceTo: value };
+      const obj = {...prices, ...upDatedValue}
+      setPrices((prev) => ({
+        ...prev,
+        ...upDatedValue,
+      }));
+      dispatch(filterByPrice(obj))
+
+    }
+
+
+  };
 
   const productsList = useSelector((state) => state.products.productsList);
   const filteredList = useSelector((state) => state.products.filtered);
-
-  console.log(productsList);
+  console.log(filteredList);
 
   return (
     <section className="products">
@@ -49,13 +62,11 @@ const Products = () => {
         <Sort
           handleCheckboxChange={handleCheckboxChange}
           isChecked={isChecked}
-          priceFrom={priceFrom}
-          handlePriceFrom={handlePriceFrom}
-
+          prices={prices}
+          handlePrices={handlePrices}
         />
         <ul className="product__list list-reset">
-
-          {filteredList.length
+          {prices.priceFrom && prices.priceTo
             ? filteredList.map((product) => (
                 <ProductCard
                   key={product.id}
@@ -63,7 +74,8 @@ const Products = () => {
                   imgSrc={`../backend/public${product.image}`}
                 />
               ))
-            : productsList && productsList.map((product) => (
+            : productsList &&
+              productsList.map((product) => (
                 <ProductCard
                   key={product.id}
                   product={product}
@@ -75,5 +87,14 @@ const Products = () => {
     </section>
   );
 };
+
+// initialState: {
+//   productsList: [],
+//   filtered: [],  
+//     priceTo: ,
+//    priceFrom: ,
+
+
+// },
 
 export default Products;
