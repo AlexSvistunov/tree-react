@@ -4,77 +4,58 @@ import ProductCard from "../ProductCard/ProductCard";
 import Sort from "../Sort/Sort";
 import "./Products.css";
 import { useEffect, useState } from "react";
-import { filterByPrice, getProducts } from "../../store/productsSlice";
+import { filterByPriceRange, getProducts } from "../../store/productsSlice";
 import { filterByDiscounted } from "../../store/productsSlice";
 
 const Products = () => {
   const [isChecked, setIsChecked] = useState(false);
-  const [prices, setPrices] = useState({ priceFrom: '', priceTo: ''});
+  const [priceFrom, setPriceFrom] = useState(0);
+  const [priceTo, setPriceTo] = useState(1000);
 
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getProducts());
   }, [dispatch]);
 
-
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
-    dispatch(filterByDiscounted());
-  };
-
-  console.log(prices);
-  const handlePrices = (state, value) => {
-    if(value === '') return
-
-    if (state === "from") {
-      const upDatedValue = { priceFrom: value };
-      const obj = {...prices, ...upDatedValue}
-      setPrices((prev) => ({
-        ...prev,
-        ...upDatedValue,
-      }));
-      dispatch(filterByPrice(obj))
-
+    if(!isChecked) {
+      dispatch(filterByDiscounted());
+    } else {
+      dispatch(getProducts())
     }
-
-    if (state === "to") {
-      const upDatedValue = { priceTo: value };
-      const obj = {...prices, ...upDatedValue}
-      setPrices((prev) => ({
-        ...prev,
-        ...upDatedValue,
-      }));
-      dispatch(filterByPrice(obj))
-
-    }
-
 
   };
 
   const productsList = useSelector((state) => state.products.productsList);
-  const filteredList = useSelector((state) => state.products.filtered);
-  console.log(filteredList);
+
+  const handlePriceRangeChange = () => {
+    dispatch(filterByPriceRange({ priceFrom, priceTo }));
+  };
+
+  const handlePriceFrom = (value) => {
+    setPriceFrom(value)
+  }
+
+  const handlePriceTo = (value) => {
+    setPriceTo(value)
+  }
 
   return (
     <section className="products">
       <div className="container">
         <h1 className="products__title section-title">All products</h1>
         <Sort
-          handleCheckboxChange={handleCheckboxChange}
           isChecked={isChecked}
-          prices={prices}
-          handlePrices={handlePrices}
+          handleCheckboxChange={handleCheckboxChange}
+          handlePriceFrom={handlePriceFrom}
+          priceFrom={priceFrom}
+          handlePriceTo={handlePriceTo}
+          priceTo={priceTo}
+          handlePriceRangeChange={handlePriceRangeChange}
         />
         <ul className="product__list list-reset">
-          {prices.priceFrom && prices.priceTo
-            ? filteredList.map((product) => (
-                <ProductCard
-                  key={product.id}
-                  product={product}
-                  imgSrc={`../backend/public${product.image}`}
-                />
-              ))
-            : productsList &&
+          {productsList &&
               productsList.map((product) => (
                 <ProductCard
                   key={product.id}

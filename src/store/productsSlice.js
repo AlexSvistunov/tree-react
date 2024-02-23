@@ -21,41 +21,20 @@ const productsSlice = createSlice({
   name: "products",
   initialState: {
     productsList: [],
-    filtered: [],
-    priceTo: '',
-    priceFrom : '',
   },
 
-  // priceTo, priceFrom
+  // priceTo, priceFromect
 
   reducers: {
     filterByDiscounted: (state) => {
-      if (state.filtered.length) {
-        state.filtered = state.filtered.filter(
-          (product) => product["discont_price"]
-        );
-      } else {
-        state.filtered = state.productsList.filter(
-          (product) => product["discont_price"]
-        );
-      }
-      // state.productsList = state.productsList.filter(product => product['discont_price'])
+      state.productsList = state.productsList.filter(product => product['discont_price'])
+
     },
 
-    filterByPrice: (state, { payload }) => {
-      // const { priceFrom, priceTo } = payload.prices || { priceFrom: 0, priceTo: Infinity };
-      // console.log(payload);
-      // if (state.filtered.length) {
-      //   state.filtered = state.filtered.filter(
-      //     (product) => product.price >= priceFrom && product.price <= priceTo
-      //   );
-      // } else {
-      //   state.filtered = state.productsList.filter(
-      //     (product) => product.price >= priceFrom && product.price <= priceTo
-      //   );
-      // }
-      
 
+    filterByPriceRange: (state, action) => {
+      const { priceFrom, priceTo } = action.payload;
+      state.productsList = state.productsList.filter(product => product.price >= priceFrom && product.price <= priceTo);
     },
   },
 
@@ -75,6 +54,6 @@ const productsSlice = createSlice({
   },
 });
 
-export const { filterByDiscounted, filterByPrice } = productsSlice.actions;
+export const { filterByDiscounted, filterByPriceRange } = productsSlice.actions;
 
 export default productsSlice.reducer;

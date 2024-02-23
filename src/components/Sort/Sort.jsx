@@ -1,18 +1,47 @@
 import "./Sort.css";
 
-const Sort = ({sale, isChecked, handleCheckboxChange, prices, handlePrices}) => {
+const Sort = ({
+  sale,
+  isChecked,
+  handleCheckboxChange,
+  handlePriceFrom,
+  priceFrom,
+  handlePriceTo,
+  priceTo,
+  handlePriceRangeChange,
+}) => {
   return (
-    <div
-      className="sort">
+    <div className="sort">
       <label>
         <span>Price</span>
-        <input className="sort__input-price" placeholder="from" value={prices.priceFrom} onChange={(e) => handlePrices('from', Number(e.target.value))}></input>
-        <input className="sort__input-price" placeholder="to" value={prices.priceTo} onChange={(e) => handlePrices('to', Number(e.target.value))}></input>
+        <input
+          className="sort__input-price"
+          value={priceFrom}
+          onChange={(e) => {
+            handlePriceFrom(Number(e.target.value));
+            handlePriceRangeChange();
+          }}
+          placeholder="from"
+        ></input>
+        <input
+          className="sort__input-price"
+          value={priceTo}
+          onChange={(e) => {
+            handlePriceTo(Number(e.target.value));
+            handlePriceRangeChange();
+          }}
+          placeholder="to"
+        ></input>
       </label>
 
-      <label className={sale ? 'sale-hidden' : null}>
+      <label className={sale ? "sale-hidden" : null}>
         <span>Discounted items</span>
-        <input className="sort__input-discount" type="checkbox" checked={isChecked} onChange={handleCheckboxChange}></input>
+        <input
+          className="sort__input-discount"
+          type="checkbox"
+          checked={isChecked}
+          onChange={handleCheckboxChange}
+        ></input>
       </label>
 
       <label>
