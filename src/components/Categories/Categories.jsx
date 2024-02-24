@@ -1,8 +1,7 @@
-import React, { useEffect } from "react";
+import  { useEffect } from "react";
 import "./Categories.css";
 import { useSelector, useDispatch } from "react-redux";
 import { getCategories } from "../../store/categoriesSlice";
-import { useGetCategoriesQuery } from "../../store/apiSlice";
 import Category from "./Category";
 import { Link } from "react-router-dom";
 

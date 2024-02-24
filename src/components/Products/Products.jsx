@@ -7,50 +7,47 @@ import { useEffect, useState } from "react";
 import { filterByPriceRange, getProducts } from "../../store/productsSlice";
 import { filterByDiscounted } from "../../store/productsSlice";
 
-//мб сделать просто не мультифильтрацию
 
 const Products = () => {
-  const [isChecked, setIsChecked] = useState(false);
-  const [priceFrom, setPriceFrom] = useState(0);
-  const [priceTo, setPriceTo] = useState(1000);
+  const [priceFrom, setPriceFrom] = useState('')
+  const [priceTo, setPriceTo] = useState('')
+  const [showDiscounted, setShowDiscounted] = useState(false)
+  const [sortBy, setSortBy] = useState('by default');
+
+  const applyFilters = ({ priceFrom, priceTo, showDiscounted, sortBy }) => {
+    // Реализация фильтрации
+    // Применение фильтров к продуктам
+  };
+
+  const handleApplyFilters = () => {
+    applyFilters({ priceFrom, priceTo, showDiscounted, sortBy });
+  };
 
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getProducts());
   }, [dispatch]);
 
-  const handleCheckboxChange = () => {
-    setIsChecked(!isChecked);
-    if(!isChecked) {
-      dispatch(filterByDiscounted());
-    } else {
-      dispatch(getProducts())
-    }
-
-  };
 
   const productsList = useSelector((state) => state.products.productsList);
+  const filteredArray = [];
 
-  const handlePriceRangeChange = () => {
-    dispatch(filterByPriceRange({priceFrom, priceTo}));
-  };
-
-  useEffect(() => {
-    handlePriceRangeChange()
-  }, [priceTo, priceFrom])
 
   return (
     <section className="products">
       <div className="container">
         <h1 className="products__title section-title">All products</h1>
         <Sort
-          isChecked={isChecked}
-          handleCheckboxChange={handleCheckboxChange}
-          setPriceFrom={setPriceFrom}
+         handleApplyFilters={handleApplyFilters}
           priceFrom={priceFrom}
-          setPriceTo={setPriceTo}
+          setPriceFrom={setPriceFrom}
           priceTo={priceTo}
-          handlePriceRangeChange={handlePriceRangeChange}
+          setPriceTo={setPriceTo}
+          showDiscounted={showDiscounted}
+          setShowDiscounted={setShowDiscounted}
+          sortBy={sortBy}
+          setSortBy={setSortBy}
+         
         />
         <ul className="product__list list-reset">
           {productsList &&
