@@ -12,7 +12,11 @@ const Sale = () => {
     <section className="sale">
       <div className="container">
         <div className="sale__inner">
-          <h2 className="sale__title section-title">Sale</h2>
+          <div className="wrapper-line">
+            <h2 className="sale__title section-title">Sale</h2>
+            <div className="line"></div>
+          </div>
+
           <Link className="sale__btn" to={'/sales'}>All sales</Link>
         </div>
         <ul className="sale__list list-reset">

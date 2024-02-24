@@ -119,6 +119,13 @@
   text-align: center;
   color: var(--white);
   cursor: pointer;
+  transition: .25s ease-in-out;
+}
+
+.product-about__addtocart:hover {
+  color: var(--white);
+  background-color: var(--black);
+  transition: .25s ease-in-out;
 }
 
 .product-about__head {

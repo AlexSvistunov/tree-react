@@ -45,6 +45,21 @@ a {
   color: var(--black);
 }
 
+.wrapper-line {
+  width: 100%;
+  max-width: 89%;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.line {
+  border: 1px solid var(--grey-divider);
+  width: 100%;
+
+}
+
+
 /* .btn-reset {
   padding: 0;
   margin: 0;

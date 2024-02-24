@@ -9,15 +9,20 @@ import { Link } from "react-router-dom";
 const Categories = () => {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getCategories())
-  }, [dispatch])
-  
-  const categoriesList = useSelector(state => state.categories.categoriesList)
+    dispatch(getCategories());
+  }, [dispatch]);
+
+  const categoriesList = useSelector(
+    (state) => state.categories.categoriesList
+  );
   return (
     <section className="categories">
       <div className="container">
         <div className="categories__inner">
-          <h2 className="categories__title section-title">Categories</h2>
+          <div className="wrapper-line">
+            <h2 className="categories__title section-title">Categories</h2>
+            <div className="line"></div>
+          </div>
           <Link className="categories__btn" to={"/categories"}>
             All categories
           </Link>
