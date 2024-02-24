@@ -7,6 +7,8 @@ import { useEffect, useState } from "react";
 import { filterByPriceRange, getProducts } from "../../store/productsSlice";
 import { filterByDiscounted } from "../../store/productsSlice";
 
+//мб сделать просто не мультифильтрацию
+
 const Products = () => {
   const [isChecked, setIsChecked] = useState(false);
   const [priceFrom, setPriceFrom] = useState(0);

@@ -103,11 +103,12 @@
   color: var(--white);
   background-color: var(--green);
   cursor: pointer;
-  transition: opacity 0.35s ease-in-out, visibility 0.35s ease-in-out;
+  transition: opacity 0.35s ease-in-out, visibility 0.35s ease-in-out, background-color 0.25s ease-in-out;
 }
 
 .product-item__btn-cart:hover {
   background-color: var(--black);
+  transition: background-color 0.25s ease-in-out;
 }
 
 .product-item:hover .product-item__btn-cart {
@@ -115,6 +116,8 @@
   visibility: visible;
   transition: opacity 0.35s ease-in-out, visibility 0.35s ease-in-out;
 }
+
+
 
 .product-link {
   position: absolute;

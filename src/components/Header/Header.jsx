@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "./Header.css";
 const Header = () => {
   return (
@@ -6,24 +7,37 @@ const Header = () => {
       <header className="header">
         <div className="container">
           <div className="header__container">
-            <Link className="logo header__logo" to="/"></Link>
+            <NavLink className="logo header__logo" to="/"></NavLink>
 
             <nav className="header__nav">
               <ul className="header__nav-list nav-list list-reset">
                 <li className="nav-list__item">
-                  <Link to="/">Main page</Link>
+                  <NavLink
+                    className={({ isActive, isPending }) =>
+                      isPending ? "pending" : isActive ? "nav-list__link--active" : ""
+                    }
+                    to="/"
+                  >
+                    Main page
+                  </NavLink>
                 </li>
 
                 <li className="nav-list__item">
-                  <Link to="/categories">Categories</Link>
+                  <NavLink  className={({ isActive, isPending }) =>
+                      isPending ? "pending" : isActive ? "nav-list__link--active" : ""
+                    } to="/categories">Categories</NavLink>
                 </li>
 
                 <li className="nav-list__item">
-                  <Link to="/products">All products</Link>
+                  <NavLink  className={({ isActive, isPending }) =>
+                      isPending ? "pending" : isActive ? "nav-list__link--active" : ""
+                    } to="/products">All products</NavLink>
                 </li>
 
                 <li className="nav-list__item">
-                  <Link to="/sales">All sales</Link>
+                  <NavLink  className={({ isActive, isPending }) =>
+                      isPending ? "pending" : isActive ? "nav-list__link--active" : ""
+                    } to="/sales">All sales</NavLink>
                 </li>
               </ul>
             </nav>

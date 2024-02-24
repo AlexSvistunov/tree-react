@@ -73,4 +73,11 @@
     line-height: 130%;
     text-align: center;
     color: var(--black);
+    transition: 0.25s ease-in-out;
+}
+
+.first-order__btn:hover {
+    background: var(--black);
+    color: var(--white);
+    transition: 0.25s ease-in-out;
 }
