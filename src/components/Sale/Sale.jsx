@@ -12,7 +12,7 @@ const Sale = () => {
     <section className="sale">
       <div className="container">
         <div className="sale__inner">
-          <div className="wrapper-line">
+          <div className="wrapper-line sale-wrapper__line">
             <h2 className="sale__title section-title">Sale</h2>
             <div className="line"></div>
           </div>

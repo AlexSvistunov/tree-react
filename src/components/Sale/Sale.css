@@ -4,14 +4,14 @@
 
 .sale__title {
     margin: 0;
-    margin-bottom: 40px;
+
 }
 
 .sale__inner {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 32px;
+    margin-bottom: 40px;
 }
 
 .sale__btn {
@@ -113,4 +113,8 @@
 .item-link {
     position: absolute;
     inset: 0;
+}
+
+.sale-wrapper__line {
+    width: 92%;
 }

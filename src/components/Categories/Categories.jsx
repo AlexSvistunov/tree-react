@@ -19,7 +19,7 @@ const Categories = () => {
     <section className="categories">
       <div className="container">
         <div className="categories__inner">
-          <div className="wrapper-line">
+          <div className="wrapper-line categories-wrapper__line">
             <h2 className="categories__title section-title">Categories</h2>
             <div className="line"></div>
           </div>
