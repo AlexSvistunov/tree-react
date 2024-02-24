@@ -21,7 +21,7 @@ const Contact = () => {
           <li className="contact__item">
             <h3 className="contact__item-head">Socials</h3>
             <div className="contact__item-socials">
-              <div className="contact__item-social">
+              <a className="contact__item-social" href="#">
                 <svg
                   width="43"
                   height="44"
@@ -34,9 +34,9 @@ const Contact = () => {
                     fill="#282828"
                   />
                 </svg>
-              </div>
+              </a>
 
-              <div className="contact__item-social">
+              <a className="contact__item-social" href="#">
                 <svg
                   width="43"
                   height="43"
@@ -49,7 +49,7 @@ const Contact = () => {
                     fill="#282828"
                   />
                 </svg>
-              </div>
+              </a>
             </div>
           </li>
 
