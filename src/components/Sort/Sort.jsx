@@ -18,7 +18,7 @@ const Sort = ({
           className="sort__input-price"
           value={priceFrom}
           onChange={(e) => {
-            setPriceFrom(e.target.value)
+            setPriceFrom(Number(e.target.value))
           }}
           placeholder="from"
         ></input>
@@ -26,7 +26,7 @@ const Sort = ({
           className="sort__input-price"
           value={priceTo}
           onChange={(e) => {
-            setPriceTo(e.target.value)
+            setPriceTo(Number(e.target.value))
           }}
           placeholder="to"
         ></input>

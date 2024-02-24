@@ -30,8 +30,12 @@ const Products = () => {
   const productsList = useSelector((state) => state.products.productsList);
 
   const handlePriceRangeChange = () => {
-    dispatch(filterByPriceRange({ priceFrom, priceTo }));
+    dispatch(filterByPriceRange({priceFrom, priceTo}));
   };
+
+  useEffect(() => {
+    handlePriceRangeChange()
+  }, [priceTo, priceFrom])
 
   return (
     <section className="products">

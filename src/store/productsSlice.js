@@ -20,6 +20,7 @@ export const getProducts = createAsyncThunk(
 const productsSlice = createSlice({
   name: "products",
   initialState: {
+    initialList : [],
     productsList: [],
   },
 
@@ -33,9 +34,41 @@ const productsSlice = createSlice({
 
     filterByPriceRange: (state, action) => {
       const { priceFrom, priceTo } = action.payload;
-      console.log(priceFrom);
-      console.log(priceTo);
-      state.productsList = state.productsList.filter(product => product.price >= priceFrom && product.price <= priceTo);
+
+      state.productsList = state.initialList.filter(product => {
+        let passDiscounted = true;
+    
+        if (state.isChecked) {
+          passDiscounted = product['discont_price'];
+        }
+    
+        if (priceFrom && priceTo) {
+          return product.price >= priceFrom && product.price <= priceTo && passDiscounted;
+        } else if (priceFrom) {
+          return product.price >= priceFrom && passDiscounted;
+        } else if (priceTo) {
+          return product.price <= priceTo && passDiscounted;
+        } else {
+          return passDiscounted;
+        }
+      });
+
+      // if(priceFrom && !priceTo) {
+      //   state.productsList = state.productsList.filter(product => product.price >= priceFrom);
+      // }
+
+      // if(!priceFrom && priceTo) {
+      //   state.productsList = state.productsList.filter(product => product.price <= priceTo);
+      // }
+
+      // if(priceFrom && priceTo) {
+      //   state.productsList = state.productsList.filter(product => product.price <= priceTo && product.price >= priceFrom);
+      // }
+
+      // if(!priceFrom && !priceTo) {
+      //   state.productsList = state.initialList
+      // }
+
     },
   },
 
@@ -46,6 +79,7 @@ const productsSlice = createSlice({
 
     builder.addCase(getProducts.fulfilled, (state, action) => {
       state.productsList = action.payload;
+      state.initialList = action.payload;
       state.isLoading = false;
     });
 
