@@ -7,38 +7,54 @@ import { useEffect, useState } from "react";
 import { filterByPriceRange, getProducts } from "../../store/productsSlice";
 import { filterByDiscounted } from "../../store/productsSlice";
 
-
 const Products = () => {
-  const [priceFrom, setPriceFrom] = useState('')
-  const [priceTo, setPriceTo] = useState('')
-  const [showDiscounted, setShowDiscounted] = useState(false)
-  const [sortBy, setSortBy] = useState('by default');
-
-  const applyFilters = ({ priceFrom, priceTo, showDiscounted, sortBy }) => {
-    // Реализация фильтрации
-    // Применение фильтров к продуктам
-  };
-
-  const handleApplyFilters = () => {
-    applyFilters({ priceFrom, priceTo, showDiscounted, sortBy });
-  };
+  const [priceFrom, setPriceFrom] = useState("");
+  const [priceTo, setPriceTo] = useState("");
+  const [showDiscounted, setShowDiscounted] = useState(false);
+  const [sortBy, setSortBy] = useState("by default");
 
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getProducts());
   }, [dispatch]);
 
-
   const productsList = useSelector((state) => state.products.productsList);
-  const filteredArray = [];
 
+  const applyFilters = ({ priceFrom, priceTo, showDiscounted, sortBy }) => {
+    let filteredProducts = productsList;
+    if (priceFrom && priceTo) {
+      filteredProducts = filteredProducts.filter(
+        (product) => product.price >= priceFrom && product.price <= priceTo
+      );
+    }
+
+    if (showDiscounted) {
+      filteredProducts = filteredProducts.filter(
+        (product) => product.discounted
+      );
+    }
+
+    switch (sortBy) {
+      case "newest":
+        filteredProducts.sort((a, b) => b.date - a.date);
+        break;
+      case "price_high_low":
+        filteredProducts.sort((a, b) => b.price - a.price);
+        break;
+      case "price_low_high":
+        filteredProducts.sort((a, b) => a.price - b.price);
+        break;
+      default:
+        break;
+    }
+  };
 
   return (
     <section className="products">
       <div className="container">
         <h1 className="products__title section-title">All products</h1>
         <Sort
-         handleApplyFilters={handleApplyFilters}
+          applyFilters={applyFilters}
           priceFrom={priceFrom}
           setPriceFrom={setPriceFrom}
           priceTo={priceTo}
@@ -47,10 +63,17 @@ const Products = () => {
           setShowDiscounted={setShowDiscounted}
           sortBy={sortBy}
           setSortBy={setSortBy}
-         
         />
         <ul className="product__list list-reset">
-          {productsList &&
+          {filteredProducts
+            ? filteredProducts.map((product) => (
+                <ProductCard
+                  key={product.id}
+                  product={product}
+                  imgSrc={`../backend/public${product.image}`}
+                />
+              ))
+            : productsList &&
               productsList.map((product) => (
                 <ProductCard
                   key={product.id}
@@ -66,10 +89,9 @@ const Products = () => {
 
 // initialState: {
 //   productsList: [],
-//   filtered: [],  
+//   filtered: [],
 //     priceTo: ,
 //    priceFrom: ,
-
 
 // },
 

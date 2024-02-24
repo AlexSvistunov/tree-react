@@ -1,10 +1,10 @@
 import "./Sort.css";
 
-const Sort = ({
-  sale,
-  handleApplyFilters, priceFrom, setPriceFrom, priceTo, setPriceTo, showDiscounted, setShowDiscounted, sortBy, setSortBy
+const Sort = ({sale, applyFilters, priceFrom, setPriceFrom, priceTo, setPriceTo, showDiscounted, setShowDiscounted, sortBy, setSortBy}) => {
+  const handleApplyFilters = () => {
+    applyFilters({ priceFrom, priceTo, showDiscounted, sortBy });
+  };
 
-}) => {
   return (
     <div className="sort">
     <label>
