@@ -24,7 +24,10 @@ const ShoppingCart = () => {
 
   const raisePrice = () => {
     cartList.forEach((el) => {
-      setTotalAmount((prev) => prev += el)
+      const item = allProducts.find((product) => product.id === el)
+      const itemPrice = item.price
+      setTotalAmount((prev) => prev += itemPrice)
+
     })
 
     // const totalSum = cartList.reduce((item, index) => {
@@ -72,7 +75,7 @@ const ShoppingCart = () => {
                         </div>
 
                         <div className="cart-item__prices">
-                          <div className="cart-item__currentprice">{product.price}</div>
+                          <div className="cart-item__currentprice">${product.price}</div>
                           <div className="cart-item__oldprice">$240</div>
                         </div>
                       </div>
