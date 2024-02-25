@@ -76,14 +76,14 @@ const Products = () => {
                   <ProductCard
                     key={product.id}
                     product={product}
-                    imgSrc={`../backend/public${product.image}`}
+                    imgSrc={`/backend/public${product.image}`}
                   />
                 ))
               : productsList.map((product) => (
                   <ProductCard
                     key={product.id}
                     product={product}
-                    imgSrc={`../backend/public${product.image}`}
+                    imgSrc={`/backend/public${product.image}`}
                   />
                 ))}
           </ul>

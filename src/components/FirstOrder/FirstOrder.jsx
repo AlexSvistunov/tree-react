@@ -10,7 +10,7 @@ const FirstOrder = () => {
           <div className="first-order__inner">
             <img
               className="first-order__img"
-              src="./src/images/first-order-img.png"
+              src="/src/images/first-order-img.png"
             ></img>
 
             <form className="first-order__form">

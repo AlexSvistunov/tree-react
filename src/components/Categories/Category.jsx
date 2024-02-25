@@ -7,7 +7,7 @@ const Category = ({ category }) => {
       <Link to={'/categories/' + categoryLink + '/' + category.id}>
         <img
           className="categories__item-img"
-          src={`./backend/public/${category.image}`}
+          src={`/backend/public/${category.image}`}
         ></img>
         <h3 className="categories__item-name">{category.title}</h3>
       </Link>

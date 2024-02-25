@@ -66,14 +66,14 @@ const AllSales = () => {
                 <ProductCard
                   key={product.id}
                   product={product}
-                  imgSrc={`../backend/public${product.image}`}
+                  imgSrc={`/backend/public${product.image}`}
                 />
               ))
             : sales && sales.map((product) => (
                 <ProductCard
                   key={product.id}
                   product={product}
-                  imgSrc={`../backend/public${product.image}`}
+                  imgSrc={`/backend/public${product.image}`}
                 />
               ))}
         </ul>

@@ -24,7 +24,7 @@ const Sale = () => {
             sales
               .slice(0, 4)
               .map((product) => (
-                <ProductCard key={product.id} product={product} imgSrc={`../backend/public${product.image}`}></ProductCard>
+                <ProductCard key={product.id} product={product} imgSrc={`/backend/public${product.image}`}></ProductCard>
               ))}
         </ul>
       </div>

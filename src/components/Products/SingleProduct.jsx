@@ -17,7 +17,7 @@ const SingleProduct = () => {
         <div className="container product__container">
           <img
             className="product__img"
-            src={data && `../backend/public${object.image}`}
+            src={data && `/backend/public${object.image}`}
             width={780}
             height={572}
           ></img>
