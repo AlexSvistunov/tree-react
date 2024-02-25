@@ -1,4 +1,4 @@
-import React from "react";
+
 import { useParams } from "react-router-dom";
 import HeaderBorder from "../Header/HeaderBorder";
 import { useGetCategoryQuery } from "../../store/apiSlice";

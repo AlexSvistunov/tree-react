@@ -10,7 +10,10 @@ const ShoppingCart = () => {
       <section className="cart">
         <div className="container">
           <div className="cart__inner">
-            <h1 className="cart__title section-title">Shopping cart</h1>
+            <div className="wrapper-line cart-wrapper__line">
+              <h1 className="cart__title section-title">Shopping cart</h1>
+              <div className="line"></div>
+            </div>
             <Link className="cart__btn" to={"/"}>
               Back to the store
             </Link>
