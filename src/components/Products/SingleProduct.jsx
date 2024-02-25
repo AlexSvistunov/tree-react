@@ -32,7 +32,7 @@ const SingleProduct = () => {
                 {data ? '$' +  object.discont_price : null}
               </span>}
 
-              {data && object['discont_price'] ? <div className="product-about__discount">-20%</div> : null}
+              {data && object['discont_price'] ? <div className="product-about__discount">{Math.ceil((((object['discont_price']  - object.price) / object.price) * 100))}%</div> : null}
             </div>
 
             <div className="product-about__amount">
