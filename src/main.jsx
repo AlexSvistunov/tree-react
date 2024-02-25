@@ -31,3 +31,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 // maybe I should pass props to categories and AllCategories with data, useEffect, ..., etc should be in the page component
 // <Contact> everywhere even in allProducts, allSales, cart etc
 // filtration need to be with object(complex filtration combinations)
+
+
+// newest(updated at) + write this sorting function by myself
+// think about apply filters btn
+// относительные пути везде
+// фильтер применяется по цене которая старая если есть скидка

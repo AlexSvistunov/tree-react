@@ -116,5 +116,9 @@
 }
 
 .sale-wrapper__line {
-    width: 92%;
+    width: 92.5%;
+}
+
+.sale__title-discounted {
+    margin-bottom: 40px;
 }

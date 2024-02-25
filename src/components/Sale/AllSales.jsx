@@ -11,7 +11,7 @@ const AllSales = () => {
   return (
     <section className="sale">
       <div className="container">
-        <h1 className="sale__title section-title">Discounted items</h1>
+        <h1 className="sale__title section-title sale__title-discounted">Discounted items</h1>
         <Sort sale={true}/>
         <ul className="sale__list list-reset">
         {sales && sales.map((product) => (

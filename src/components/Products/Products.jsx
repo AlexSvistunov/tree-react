@@ -12,41 +12,46 @@ const Products = () => {
   const [priceTo, setPriceTo] = useState("");
   const [showDiscounted, setShowDiscounted] = useState(false);
   const [sortBy, setSortBy] = useState("by default");
+  const [filteredProducts, setFilteredProducts] = useState([]);
 
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getProducts());
   }, [dispatch]);
 
+
   const productsList = useSelector((state) => state.products.productsList);
 
   const applyFilters = ({ priceFrom, priceTo, showDiscounted, sortBy }) => {
-    let filteredProducts = productsList;
+    let updatedProducts = [...productsList];
+
     if (priceFrom && priceTo) {
-      filteredProducts = filteredProducts.filter(
+      updatedProducts = updatedProducts.filter(
         (product) => product.price >= priceFrom && product.price <= priceTo
       );
     }
 
     if (showDiscounted) {
-      filteredProducts = filteredProducts.filter(
-        (product) => product.discounted
+      updatedProducts = updatedProducts.filter(
+        (product) => product["discont_price"]
       );
     }
 
     switch (sortBy) {
       case "newest":
-        filteredProducts.sort((a, b) => b.date - a.date);
+        updatedProducts.sort((a, b) => b.date - a.date);
         break;
       case "price_high_low":
-        filteredProducts.sort((a, b) => b.price - a.price);
+        updatedProducts.sort((a, b) => b.price - a.price);
         break;
       case "price_low_high":
-        filteredProducts.sort((a, b) => a.price - b.price);
+        updatedProducts.sort((a, b) => a.price - b.price);
         break;
       default:
         break;
     }
+
+    setFilteredProducts(updatedProducts);
   };
 
   return (
@@ -65,7 +70,7 @@ const Products = () => {
           setSortBy={setSortBy}
         />
         <ul className="product__list list-reset">
-          {filteredProducts
+          {filteredProducts.length > 0
             ? filteredProducts.map((product) => (
                 <ProductCard
                   key={product.id}
@@ -73,8 +78,7 @@ const Products = () => {
                   imgSrc={`../backend/public${product.image}`}
                 />
               ))
-            : productsList &&
-              productsList.map((product) => (
+            : productsList.map((product) => (
                 <ProductCard
                   key={product.id}
                   product={product}
@@ -86,13 +90,5 @@ const Products = () => {
     </section>
   );
 };
-
-// initialState: {
-//   productsList: [],
-//   filtered: [],
-//     priceTo: ,
-//    priceFrom: ,
-
-// },
 
 export default Products;
