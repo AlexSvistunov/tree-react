@@ -3,10 +3,20 @@ import HeaderBorder from "../Header/HeaderBorder";
 import "../Products/SingleProduct.css";
 import "./ShoppingCart.css";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { getProducts } from "../../store/productsSlice";
 
 const ShoppingCart = () => {
   const cartList = useSelector((state) => state.cart.cartList);
-  console.log(cartList);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getProducts());
+  }, [dispatch]);
+
+  const allProducts = useSelector((state) => state.products.productsList);
+  // console.log(allProducts);
+  // console.log(cartList);
   return (
     <>
       <HeaderBorder />
@@ -24,16 +34,20 @@ const ShoppingCart = () => {
 
           <div className="cart__wrapper">
             <ul className="cart__list list-reset">
-              {cartList &&
-                cartList.map((cartItemId) => (
-                  <li key={cartItemId} className="cart-item">
+              {cartList.map((productId) => {
+                const product = allProducts.find(
+                  (product) => product.id === productId
+                );
+                return (
+                  <li key={product.id} className="cart-item">
                     <img
+                      style={{width: '200px', height: '180px'}}
                       className="cart-item__img"
-                      src="/src/images/cart-img.jpg"
+                      src={`/backend/public${product.image}`}
                     ></img>
                     <div className="cart-item__info">
-                      <h3 className="cart-item__title">Secateurs</h3>
-                      <div className="cart-item__bottom ">
+                      <h3 className="cart-item__title">{product.title}</h3>
+                      <div className="cart-item__bottom">
                         <div className="product-about__inner">
                           <button className="product-about__plus">+</button>
                           <div className="product-about__number">1</div>
@@ -41,7 +55,7 @@ const ShoppingCart = () => {
                         </div>
 
                         <div className="cart-item__prices">
-                          <div className="cart-item__currentprice">$155</div>
+                          <div className="cart-item__currentprice">{product.price}</div>
                           <div className="cart-item__oldprice">$240</div>
                         </div>
                       </div>
@@ -49,7 +63,8 @@ const ShoppingCart = () => {
 
                     <button className="cart-item__delete-btn"></button>
                   </li>
-                ))}
+                );
+              })}
             </ul>
 
             <div className="cart-details">

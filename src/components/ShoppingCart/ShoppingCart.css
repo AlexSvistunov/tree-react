@@ -35,6 +35,9 @@
 }
 
 .cart__list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
   width: 100%;
   max-width: 780px;
 }
@@ -47,11 +50,17 @@
   min-height: 180px;
 }
 
+.cart-item__title {
+  max-width: 250px;
+  margin: 0;
+}
+
 .cart-item__img {
   margin-right: 32px;
 }
 
 .cart-item__info {
+  padding-top: 32px;
   display: flex;
   flex-direction: column;
   gap: 32px;

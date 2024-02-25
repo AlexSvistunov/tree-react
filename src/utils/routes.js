@@ -1,6 +1,3 @@
-let array = [{price: 1}, {price: 2}]
-array = array.filter(obj => obj.price === 1)
-console.log(array);
 
 const ROUTES = {
     MAINPAGE: '/',
@@ -13,3 +10,4 @@ const ROUTES = {
 }
 
 export default ROUTES
+

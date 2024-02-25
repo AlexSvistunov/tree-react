@@ -2,8 +2,10 @@
 import { Link } from "react-router-dom";
 import './Header.css'
 import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const HeaderBorder = () => {
+  const amount = useSelector(state => state.cart.cartList).length;
   return (
     <>
       <header
@@ -52,7 +54,7 @@ const HeaderBorder = () => {
 
             <Link to={"/cart"}>
               <div className="cart header__cart">
-                <div className="header__cart-circle">1</div>
+                <div className="header__cart-circle">{amount}</div>
                 <svg
                   width="48"
                   height="48"
