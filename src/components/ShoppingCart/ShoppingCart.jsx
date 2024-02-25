@@ -4,7 +4,7 @@ import "../Products/SingleProduct.css";
 import "./ShoppingCart.css";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getProducts } from "../../store/productsSlice";
 
 const ShoppingCart = () => {
@@ -14,9 +14,24 @@ const ShoppingCart = () => {
     dispatch(getProducts());
   }, [dispatch]);
 
+  useEffect(() => {
+    raisePrice()
+  }, [cartList])
+
+  let [totalAmount, setTotalAmount] = useState(0)
+
   const allProducts = useSelector((state) => state.products.productsList);
-  // console.log(allProducts);
-  // console.log(cartList);
+
+  const raisePrice = () => {
+    cartList.forEach((el) => {
+      setTotalAmount((prev) => prev += el)
+    })
+
+    // const totalSum = cartList.reduce((item, index) => {
+    //   item++
+    // },0)
+  }
+
   return (
     <>
       <HeaderBorder />
@@ -38,6 +53,8 @@ const ShoppingCart = () => {
                 const product = allProducts.find(
                   (product) => product.id === productId
                 );
+
+
                 return (
                   <li key={product.id} className="cart-item">
                     <img
@@ -72,7 +89,7 @@ const ShoppingCart = () => {
               <span className="cart-details__items">4 items</span>
               <div className="cart-details__total">
                 <span className="cart-details__total-head">Total</span>
-                <span className="cart-details__total-sum">$541,00</span>
+                <span className="cart-details__total-sum">${totalAmount}</span>
               </div>
 
               <form className="cart-order">
@@ -102,5 +119,10 @@ const ShoppingCart = () => {
     </>
   );
 };
+
+// + - state
+// total amount
+// added to cart btn changes
+// add to cart in from different components such as single product for instance
 
 export default ShoppingCart;
