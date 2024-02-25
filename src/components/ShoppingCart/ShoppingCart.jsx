@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { getProducts } from "../../store/productsSlice";
+import { deleteProductFromCart } from "../../store/cartSlice";
 
 const ShoppingCart = () => {
   const cartList = useSelector((state) => state.cart.cartList);
@@ -16,6 +17,7 @@ const ShoppingCart = () => {
 
   useEffect(() => {
     raisePrice()
+    // not always need to only RAISE PRICE
   }, [cartList])
 
   let [totalAmount, setTotalAmount] = useState(0)
@@ -30,9 +32,10 @@ const ShoppingCart = () => {
 
     })
 
-    // const totalSum = cartList.reduce((item, index) => {
-    //   item++
-    // },0)
+  }
+
+  const deleteItemFromCart = (productId) => {
+    dispatch(deleteProductFromCart(productId))
   }
 
   return (
@@ -81,7 +84,7 @@ const ShoppingCart = () => {
                       </div>
                     </div>
 
-                    <button className="cart-item__delete-btn"></button>
+                    <button className="cart-item__delete-btn" onClick={deleteItemFromCart}></button>
                   </li>
                 );
               })}
