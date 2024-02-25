@@ -84,7 +84,7 @@ const ShoppingCart = () => {
                       </div>
                     </div>
 
-                    <button className="cart-item__delete-btn" onClick={deleteItemFromCart}></button>
+                    <button className="cart-item__delete-btn" onClick={() => deleteItemFromCart(product.id)}></button>
                   </li>
                 );
               })}
