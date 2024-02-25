@@ -42,7 +42,7 @@
 .sort__select {
   border: 1px solid var(--grey-divider);
   border-radius: 6px;
-  padding: 8px 8px 8px 16px;
+  padding: 0 8px;
   width: 200px;
   height: 36px;
 }
