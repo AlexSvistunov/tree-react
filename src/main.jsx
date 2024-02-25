@@ -37,3 +37,4 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 // think about apply filters btn
 // относительные пути везде
 // фильтер применяется по цене которая старая если есть скидка
+// select change handler is too long

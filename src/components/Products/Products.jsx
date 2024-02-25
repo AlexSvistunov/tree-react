@@ -6,6 +6,7 @@ import "./Products.css";
 import { useEffect, useState } from "react";
 import { filterByPriceRange, getProducts } from "../../store/productsSlice";
 import { filterByDiscounted } from "../../store/productsSlice";
+import Contact from "../Contact/Contact";
 
 const Products = () => {
   const [priceFrom, setPriceFrom] = useState("");
@@ -18,7 +19,6 @@ const Products = () => {
   useEffect(() => {
     dispatch(getProducts());
   }, [dispatch]);
-
 
   const productsList = useSelector((state) => state.products.productsList);
 
@@ -55,39 +55,43 @@ const Products = () => {
   };
 
   return (
-    <section className="products">
-      <div className="container">
-        <h1 className="products__title section-title">All products</h1>
-        <Sort
-          applyFilters={applyFilters}
-          priceFrom={priceFrom}
-          setPriceFrom={setPriceFrom}
-          priceTo={priceTo}
-          setPriceTo={setPriceTo}
-          showDiscounted={showDiscounted}
-          setShowDiscounted={setShowDiscounted}
-          sortBy={sortBy}
-          setSortBy={setSortBy}
-        />
-        <ul className="product__list list-reset">
-          {filteredProducts.length > 0
-            ? filteredProducts.map((product) => (
-                <ProductCard
-                  key={product.id}
-                  product={product}
-                  imgSrc={`../backend/public${product.image}`}
-                />
-              ))
-            : productsList.map((product) => (
-                <ProductCard
-                  key={product.id}
-                  product={product}
-                  imgSrc={`../backend/public${product.image}`}
-                />
-              ))}
-        </ul>
-      </div>
-    </section>
+    <>
+      <section className="products">
+        <div className="container">
+          <h1 className="products__title section-title">All products</h1>
+          <Sort
+            applyFilters={applyFilters}
+            priceFrom={priceFrom}
+            setPriceFrom={setPriceFrom}
+            priceTo={priceTo}
+            setPriceTo={setPriceTo}
+            showDiscounted={showDiscounted}
+            setShowDiscounted={setShowDiscounted}
+            sortBy={sortBy}
+            setSortBy={setSortBy}
+          />
+          <ul className="product__list list-reset">
+            {filteredProducts.length > 0
+              ? filteredProducts.map((product) => (
+                  <ProductCard
+                    key={product.id}
+                    product={product}
+                    imgSrc={`../backend/public${product.image}`}
+                  />
+                ))
+              : productsList.map((product) => (
+                  <ProductCard
+                    key={product.id}
+                    product={product}
+                    imgSrc={`../backend/public${product.image}`}
+                  />
+                ))}
+          </ul>
+        </div>
+      </section>
+
+      <Contact />
+    </>
   );
 };
 

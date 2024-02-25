@@ -5,7 +5,7 @@ const Contact = () => {
   return (
     <section className="contact">
       <div className="container">
-        <h2 className="contact__title section-title">Contacts</h2>
+        <h2 className="contact__title section-title">Contact</h2>
 
         <ul
           className="contact__list list-reset"

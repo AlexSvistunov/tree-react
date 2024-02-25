@@ -56,7 +56,7 @@ const SingleCategory = () => {
       <HeaderBorder />
       <section className="category">
         <div className="container">
-          <h1>{title.toUpperCase()}</h1>
+          <h1 className="category__title section-title">{title.slice(0,1).toUpperCase() + title.slice(1).toLowerCase()}</h1>
 
           <Sort 
             applyFilters={applyFilters}
