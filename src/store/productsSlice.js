@@ -53,21 +53,6 @@ const productsSlice = createSlice({
         }
       });
 
-      // if(priceFrom && !priceTo) {
-      //   state.productsList = state.productsList.filter(product => product.price >= priceFrom);
-      // }
-
-      // if(!priceFrom && priceTo) {
-      //   state.productsList = state.productsList.filter(product => product.price <= priceTo);
-      // }
-
-      // if(priceFrom && priceTo) {
-      //   state.productsList = state.productsList.filter(product => product.price <= priceTo && product.price >= priceFrom);
-      // }
-
-      // if(!priceFrom && !priceTo) {
-      //   state.productsList = state.initialList
-      // }
 
     },
   },

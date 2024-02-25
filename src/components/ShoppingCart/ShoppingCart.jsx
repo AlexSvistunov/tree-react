@@ -1,9 +1,12 @@
+import { useSelector } from "react-redux";
 import HeaderBorder from "../Header/HeaderBorder";
 import "../Products/SingleProduct.css";
 import "./ShoppingCart.css";
 import { Link } from "react-router-dom";
 
 const ShoppingCart = () => {
+  const cartList = useSelector((state) => state.cart.cartList);
+  console.log(cartList);
   return (
     <>
       <HeaderBorder />
@@ -21,29 +24,32 @@ const ShoppingCart = () => {
 
           <div className="cart__wrapper">
             <ul className="cart__list list-reset">
-              <li className="cart-item">
-                <img
-                  className="cart-item__img"
-                  src="/src/images/cart-img.jpg"
-                ></img>
-                <div className="cart-item__info">
-                  <h3 className="cart-item__title">Secateurs</h3>
-                  <div className="cart-item__bottom ">
-                    <div className="product-about__inner">
-                      <button className="product-about__plus">+</button>
-                      <div className="product-about__number">1</div>
-                      <button className="product-about__minus">-</button>
+              {cartList &&
+                cartList.map((cartItemId) => (
+                  <li key={cartItemId} className="cart-item">
+                    <img
+                      className="cart-item__img"
+                      src="/src/images/cart-img.jpg"
+                    ></img>
+                    <div className="cart-item__info">
+                      <h3 className="cart-item__title">Secateurs</h3>
+                      <div className="cart-item__bottom ">
+                        <div className="product-about__inner">
+                          <button className="product-about__plus">+</button>
+                          <div className="product-about__number">1</div>
+                          <button className="product-about__minus">-</button>
+                        </div>
+
+                        <div className="cart-item__prices">
+                          <div className="cart-item__currentprice">$155</div>
+                          <div className="cart-item__oldprice">$240</div>
+                        </div>
+                      </div>
                     </div>
 
-                    <div className="cart-item__prices">
-                      <div className="cart-item__currentprice">$155</div>
-                      <div className="cart-item__oldprice">$240</div>
-                    </div>
-                  </div>
-                </div>
-
-                <button className="cart-item__delete-btn"></button>
-              </li>
+                    <button className="cart-item__delete-btn"></button>
+                  </li>
+                ))}
             </ul>
 
             <div className="cart-details">

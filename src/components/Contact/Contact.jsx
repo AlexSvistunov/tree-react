@@ -1,6 +1,7 @@
 import { YMaps, Map } from "@pbe/react-yandex-maps";
 import "./Contact.css";
 
+
 const Contact = () => {
   return (
     <section className="contact">
@@ -69,7 +70,7 @@ const Contact = () => {
         </ul>
 
         <YMaps>
-          <Map
+          <Map query={{ apikey: '4cd72de0-415b-4b47-aa0a-0c5b084cdb9f'}}
             id="map"
             defaultState={{ center: [55.713534, 37.63178], zoom: 15 }}
             style={{ width: "100%", height: "350px" }}
@@ -79,5 +80,7 @@ const Contact = () => {
     </section>
   );
 };
+
+// 4cd72de0-415b-4b47-aa0a-0c5b084cdb9f
 
 export default Contact;
