@@ -67,12 +67,12 @@ const SingleProduct = () => {
                 <button className='product-about__minus'>-</button>
               </div>
               <button
-                className={cartList.find(el => el === object.id) ? 'product-about__addtocart product-about__addtocart--incart' : 'product-about__addtocart' }
+                className={object && cartList.find(el => el === object.id) ? 'product-about__addtocart product-about__addtocart--incart' : 'product-about__addtocart' }
                 onClick={() => {
                   addToCart(object.id)
                 }}
               >
-                {cartList.find(el => el === object.id) ? 'Added' : 'Add to cart'}
+                {object && cartList.find(el => el === object.id) ? 'Added' : 'Add to cart'}
               </button>
             </div>
 

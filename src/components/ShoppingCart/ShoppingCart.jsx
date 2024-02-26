@@ -16,23 +16,24 @@ const ShoppingCart = () => {
   const allProducts = useSelector((state) => state.products.productsList);
   const cartList = useSelector((state) => state.cart.cartList);
   useEffect(() => {
-    updatePrice()
-  }, [cartList])
+    updatePrice();
+  }, [cartList]);
 
-  let [totalAmount, setTotalAmount] = useState(0)
+  let [totalAmount, setTotalAmount] = useState(0);
 
   const updatePrice = () => {
     let totalPrice = 0;
     cartList.forEach((itemId) => {
-        const item = allProducts && allProducts.find((product) => product.id === itemId);
-        totalPrice += item.price;
+      const item =
+        allProducts && allProducts.find((product) => product.id === itemId);
+      totalPrice += item.price;
     });
     setTotalAmount(totalPrice);
-}
+  };
 
   const deleteItemFromCart = (productId) => {
-    dispatch(deleteProductFromCart(productId))
-  }
+    dispatch(deleteProductFromCart(productId));
+  };
 
   return (
     <>
@@ -49,75 +50,97 @@ const ShoppingCart = () => {
             </Link>
           </div>
 
-          <div className="cart__wrapper">
-            <ul className="cart__list list-reset">
-              {cartList.map((productId) => {
-              
-                const product = allProducts.find(
-                  (product) => product.id === productId
-                );
+          {/* <div className="cart__wrapper"></div> */}
 
+          {!cartList.length ? (
+            <div className="cart__wrapper" style={{flexDirection: 'column'}}>
+              <span className="cart__wrapper-no-items">Looks like you have no items in your basket currently.</span>
+              <Link className="cart__wrapper-continue" to={'/products'}>Continue Shopping</Link>
+            </div>
+          ) : (
+            <div className="cart__wrapper">
+              <ul className="cart__list list-reset">
+                {cartList.map((productId) => {
+                  const product = allProducts.find(
+                    (product) => product.id === productId
+                  );
 
-                if(allProducts) {
-                  return (
-                    <li key={product.id} className="cart-item">
-                      <img
-                        style={{width: '200px', height: '180px'}}
-                        className="cart-item__img"
-                        src={`/backend/public${product.image}`}
-                      ></img>
-                      <div className="cart-item__info">
-                        <h3 className="cart-item__title">{product.title}</h3>
-                        <div className="cart-item__bottom">
-                          <div className="product-about__inner">
-                            <button className="product-about__plus">+</button>
-                            <div className="product-about__number">1</div>
-                            <button className="product-about__minus">-</button>
-                          </div>
-  
-                          <div className="cart-item__prices">
-                            <div className="cart-item__currentprice">${product.price}</div>
-                            <div className="cart-item__oldprice">$240</div>
+                  if (allProducts) {
+                    return (
+                      <li key={product.id} className="cart-item">
+                        <img
+                          style={{ width: "200px", height: "180px" }}
+                          className="cart-item__img"
+                          src={`/backend/public${product.image}`}
+                        ></img>
+                        <div className="cart-item__info">
+                          <h3 className="cart-item__title">{product.title}</h3>
+                          <div className="cart-item__bottom">
+                            <div className="product-about__inner">
+                              <button className="product-about__plus">+</button>
+                              <div className="product-about__number">1</div>
+                              <button className="product-about__minus">
+                                -
+                              </button>
+                            </div>
+
+                            <div className="cart-item__prices">
+                              <div className="cart-item__currentprice">
+                                ${product.price}
+                              </div>
+                              <div className="cart-item__oldprice">$240</div>
+                            </div>
                           </div>
                         </div>
-                      </div>
-  
-                      <button className="cart-item__delete-btn" onClick={() => deleteItemFromCart(product.id)}></button>
-                    </li>
-                  );
-                }
-              })}
-            </ul>
 
-            <div className="cart-details">
-              <h3 className="cart-details__title">Order details</h3>
-              <span className="cart-details__items">{cartList.length ? (cartList.length + ' item' + (cartList.length !== 1 ? 's' : '')) : '0 items'}</span>
-              <div className="cart-details__total">
-                <span className="cart-details__total-head">Total</span>
-                <span className="cart-details__total-sum">${totalAmount}</span>
-              </div>
-              <form className="cart-order">
-                <div className="cart-order__inputs">
-                  <input
-                    className="cart-order__input"
-                    placeholder="Name"
-                    type="text"
-                  ></input>
-                  <input
-                    className="cart-order__input"
-                    placeholder="Phone number"
-                    type="tel"
-                  ></input>
-                  <input
-                    className="cart-order__input"
-                    placeholder="Email"
-                    type="email"
-                  ></input>
+                        <button
+                          className="cart-item__delete-btn"
+                          onClick={() => deleteItemFromCart(product.id)}
+                        ></button>
+                      </li>
+                    );
+                  }
+                })}
+              </ul>
+
+              <div className="cart-details">
+                <h3 className="cart-details__title">Order details</h3>
+                <span className="cart-details__items">
+                  {cartList.length
+                    ? cartList.length +
+                      " item" +
+                      (cartList.length !== 1 ? "s" : "")
+                    : "0 items"}
+                </span>
+                <div className="cart-details__total">
+                  <span className="cart-details__total-head">Total</span>
+                  <span className="cart-details__total-sum">
+                    ${totalAmount}
+                  </span>
                 </div>
-                <button className="cart-order__btn">Order</button>
-              </form>
+                <form className="cart-order">
+                  <div className="cart-order__inputs">
+                    <input
+                      className="cart-order__input"
+                      placeholder="Name"
+                      type="text"
+                    ></input>
+                    <input
+                      className="cart-order__input"
+                      placeholder="Phone number"
+                      type="tel"
+                    ></input>
+                    <input
+                      className="cart-order__input"
+                      placeholder="Email"
+                      type="email"
+                    ></input>
+                  </div>
+                  <button className="cart-order__btn">Order</button>
+                </form>
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </section>
     </>
