@@ -6,7 +6,6 @@ import { useState } from "react";
 import './ProductCard.css'
 
 const ProductCard = ({ product, imgSrc }) => {
-  let [isInCart, setIsInCart] = useState(null)
   const dispatch = useDispatch();
   const cartList = useSelector(state => state.cart.cartList)
   console.log(cartList);
@@ -15,7 +14,6 @@ const ProductCard = ({ product, imgSrc }) => {
     const isItemExist = cartList.find(el => el === id)
     if(!isItemExist) {
       dispatch(addProductToCart(id));
-      setIsInCart(true)
       return isItemExist
     } else {
       return
@@ -36,12 +34,12 @@ const ProductCard = ({ product, imgSrc }) => {
         <img className="product-item__img" src={imgSrc && imgSrc} height={284}></img>
         {/* <button className="product-item__btn-cart" onClick={() => addToCart(product.id)}>Add to cart</button> */}
         <button
-                className={isInCart ? 'product-item__btn-cart product-item__btn-cart--incart' : 'product-item__btn-cart' }
+                className={cartList.find(el => el === product.id) ? 'product-item__btn-cart product-item__btn-cart--incart' : 'product-item__btn-cart' }
                 onClick={() => {
                   addToCart(product.id)
                 }}
               >
-                {isInCart ? 'Added' : 'Add to cart'}
+                {true ? 'Added' : 'Add to cart'}
               </button>
       </div>
       <h3 className="product-item__title">{product.title}</h3>
