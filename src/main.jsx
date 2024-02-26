@@ -35,6 +35,5 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 
 // newest(updated at) + write this sorting function by myself
 // think about apply filters btn
-// относительные пути везде
 // фильтер применяется по цене которая старая если есть скидка
 // select change handler is too long

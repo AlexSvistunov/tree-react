@@ -120,6 +120,7 @@
   color: var(--white);
   cursor: pointer;
   transition: .25s ease-in-out;
+  border: 1px solid transparent;
 }
 
 .product-about__addtocart:hover {
@@ -161,4 +162,10 @@
   text-decoration-skip-ink: none;
   color: var(--black);
   cursor: pointer;
+}
+
+.product-about__addtocart.product-about__addtocart--incart {
+  background-color: var(--white);
+  color: var(--black);
+  border: 1px solid var(--black);
 }

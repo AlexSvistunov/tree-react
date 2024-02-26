@@ -3,12 +3,29 @@ import { useGetProductQuery } from "../../store/apiSlice";
 import Contact from "../Contact/Contact";
 import HeaderBorder from "../Header/HeaderBorder";
 import "./SingleProduct.css";
+import { addProductToCart } from "../../store/cartSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
 
 const SingleProduct = () => {
+  const dispatch = useDispatch();
+  let [isInCart, setIsInCart] = useState(null)
+  const state = useSelector((state) => state.cart.cartList);
   const { id } = useParams();
   const request = useGetProductQuery(id);
   const data = request.data;
   const object = data && data[0];
+  const addToCart = (id) => {
+    const isItemExist = state.find(el => el === id)
+    if(!isItemExist) {
+      dispatch(addProductToCart(id));
+      setIsInCart(true)
+      return isItemExist
+    } else {
+      return
+    }
+
+  };
   return (
     <div>
       <HeaderBorder />
@@ -25,30 +42,46 @@ const SingleProduct = () => {
             <h3 className="product-about__title">{data && object.title}</h3>
             <div className="product-about__prices">
               <span className="product-about__currentprice">
-                {data && '$' + object.price}
+                {data && "$" + object.price}
               </span>
 
-              {data && object['discont_price'] &&  <span className="product-about__oldprice">
-                {data ? '$' +  object.discont_price : null}
-              </span>}
+              {data && object["discont_price"] && (
+                <span className="product-about__oldprice">
+                  {data ? "$" + object.discont_price : null}
+                </span>
+              )}
 
-              {data && object['discont_price'] ? <div className="product-about__discount">{Math.ceil((((object['discont_price']  - object.price) / object.price) * 100))}%</div> : null}
+              {data && object["discont_price"] ? (
+                <div className="product-about__discount">
+                  {Math.ceil(
+                    ((object["discont_price"] - object.price) / object.price) *
+                      100
+                  )}
+                  %
+                </div>
+              ) : null}
             </div>
 
             <div className="product-about__amount">
               <div className="product-about__inner">
                 <button className="product-about__plus">+</button>
                 <div className="product-about__number">1</div>
-                <button className="product-about__minus">-</button>
+                <button className='product-about__minus'>-</button>
               </div>
-              <button className="product-about__addtocart">Add to cart</button>
+              <button
+                className={isInCart ? 'product-about__addtocart product-about__addtocart--incart' : 'product-about__addtocart' }
+                onClick={() => {
+                  addToCart(object.id)
+                }}
+              >
+                {isInCart ? 'Added' : 'Add to cart'}
+              </button>
             </div>
 
             <div className="product-about__texts">
               <h3 className="product-about__head">Description</h3>
               <div className="product-about__text">
                 <p>{data && object.description}</p>
-                {/* <p>SOME TEXT2</p> */}
               </div>
 
               <button className="product-about__readmore">Read more</button>

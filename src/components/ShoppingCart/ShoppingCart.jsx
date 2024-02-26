@@ -16,7 +16,7 @@ const ShoppingCart = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    raisePrice()
+    updatePrice()
     // not always need to only RAISE PRICE
   }, [cartList])
 
@@ -24,15 +24,14 @@ const ShoppingCart = () => {
 
   const allProducts = useSelector((state) => state.products.productsList);
 
-  const raisePrice = () => {
-    cartList.forEach((el) => {
-      const item = allProducts.find((product) => product.id === el)
-      const itemPrice = item.price
-      setTotalAmount((prev) => prev += itemPrice)
-
-    })
-
-  }
+  const updatePrice = () => {
+    let totalPrice = 0;
+    cartList.forEach((itemId) => {
+        const item = allProducts.find((product) => product.id === itemId);
+        totalPrice += item.price;
+    });
+    setTotalAmount(totalPrice);
+}
 
   const deleteItemFromCart = (productId) => {
     dispatch(deleteProductFromCart(productId))
@@ -66,7 +65,7 @@ const ShoppingCart = () => {
                     <img
                       style={{width: '200px', height: '180px'}}
                       className="cart-item__img"
-                      src={`/backend/public${product.image}`}
+                      src={product.image && `/backend/public${product.image}`}
                     ></img>
                     <div className="cart-item__info">
                       <h3 className="cart-item__title">{product.title}</h3>
