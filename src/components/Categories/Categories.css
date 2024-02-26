@@ -63,5 +63,12 @@
     margin-bottom: 40px;    
 }
 
+.categories__btn:hover {
+    background: var(--light-grey);
+}
+
+.categories__btn:active {
+    color: var(--black);
+}
 
 

@@ -8,7 +8,6 @@ import './ProductCard.css'
 const ProductCard = ({ product, imgSrc }) => {
   const dispatch = useDispatch();
   const cartList = useSelector(state => state.cart.cartList)
-  console.log(cartList);
 
   const addToCart = (id) => {
     const isItemExist = cartList.find(el => el === id)

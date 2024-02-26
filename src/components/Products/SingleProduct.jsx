@@ -9,13 +9,13 @@ import { useState } from "react";
 
 const SingleProduct = () => {
   const dispatch = useDispatch();
-  const state = useSelector((state) => state.cart.cartList);
+  const cartList = useSelector((state) => state.cart.cartList);
   const { id } = useParams();
   const request = useGetProductQuery(id);
   const data = request.data;
   const object = data && data[0];
   const addToCart = (id) => {
-    const isItemExist = state.find(el => el === id)
+    const isItemExist = cartList.find(el => el === id)
     if(!isItemExist) {
       dispatch(addProductToCart(id));
       return isItemExist
@@ -67,12 +67,12 @@ const SingleProduct = () => {
                 <button className='product-about__minus'>-</button>
               </div>
               <button
-                className={state.find(el => el === object.id) ? 'product-about__addtocart product-about__addtocart--incart' : 'product-about__addtocart' }
+                className={cartList.find(el => el === object.id) ? 'product-about__addtocart product-about__addtocart--incart' : 'product-about__addtocart' }
                 onClick={() => {
                   addToCart(object.id)
                 }}
               >
-                {state.find(el => el === object.id) ? 'Added' : 'Add to cart'}
+                {cartList.find(el => el === object.id) ? 'Added' : 'Add to cart'}
               </button>
             </div>
 

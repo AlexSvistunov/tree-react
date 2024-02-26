@@ -29,6 +29,14 @@
   width: 100%;
 }
 
+.cart__btn:hover {
+  background: var(--light-grey);
+}
+
+.cart__btn:active {
+  color: var(--black);
+}
+
 .cart__wrapper {
   display: flex;
   gap: 32px;
