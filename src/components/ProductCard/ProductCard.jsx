@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { addProductToCart } from "../../store/cartSlice";
 import { useEffect } from "react";
 import { useState } from "react";
+import './ProductCard.css'
 
 const ProductCard = ({ product, imgSrc }) => {
   let [isInCart, setIsInCart] = useState(null)
@@ -33,7 +34,15 @@ const ProductCard = ({ product, imgSrc }) => {
           <div className="product-item__product">{percent}%</div>
         )}
         <img className="product-item__img" src={imgSrc && imgSrc} height={284}></img>
-        <button className="product-item__btn-cart" onClick={() => addToCart(product.id)}>Add to cart</button>
+        {/* <button className="product-item__btn-cart" onClick={() => addToCart(product.id)}>Add to cart</button> */}
+        <button
+                className={isInCart ? 'product-item__btn-cart product-item__btn-cart--incart' : 'product-item__btn-cart' }
+                onClick={() => {
+                  addToCart(product.id)
+                }}
+              >
+                {isInCart ? 'Added' : 'Add to cart'}
+              </button>
       </div>
       <h3 className="product-item__title">{product.title}</h3>
       <div className="product-item__prices">

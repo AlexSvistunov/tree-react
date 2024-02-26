@@ -123,3 +123,9 @@
   position: absolute;
   inset: 0;
 }
+
+.product-item__btn-cart.product-item__btn-cart--incart {
+  background-color: var(--white);
+  color: var(--black);
+  border: 1px solid var(--black);
+}
