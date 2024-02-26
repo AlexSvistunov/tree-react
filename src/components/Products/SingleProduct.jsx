@@ -9,7 +9,6 @@ import { useState } from "react";
 
 const SingleProduct = () => {
   const dispatch = useDispatch();
-  let [isInCart, setIsInCart] = useState(null)
   const state = useSelector((state) => state.cart.cartList);
   const { id } = useParams();
   const request = useGetProductQuery(id);
@@ -19,7 +18,6 @@ const SingleProduct = () => {
     const isItemExist = state.find(el => el === id)
     if(!isItemExist) {
       dispatch(addProductToCart(id));
-      setIsInCart(true)
       return isItemExist
     } else {
       return
@@ -69,12 +67,12 @@ const SingleProduct = () => {
                 <button className='product-about__minus'>-</button>
               </div>
               <button
-                className={isInCart ? 'product-about__addtocart product-about__addtocart--incart' : 'product-about__addtocart' }
+                className={state.find(el => el === object.id) ? 'product-about__addtocart product-about__addtocart--incart' : 'product-about__addtocart' }
                 onClick={() => {
                   addToCart(object.id)
                 }}
               >
-                {isInCart ? 'Added' : 'Add to cart'}
+                {state.find(el => el === object.id) ? 'Added' : 'Add to cart'}
               </button>
             </div>
 

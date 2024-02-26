@@ -39,7 +39,7 @@ const ProductCard = ({ product, imgSrc }) => {
                   addToCart(product.id)
                 }}
               >
-                {true ? 'Added' : 'Add to cart'}
+                {cartList.find(el => el === product.id) ? 'Added' : 'Add to cart'}
               </button>
       </div>
       <h3 className="product-item__title">{product.title}</h3>
