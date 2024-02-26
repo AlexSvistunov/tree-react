@@ -2,15 +2,25 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { addProductToCart } from "../../store/cartSlice";
 import { useEffect } from "react";
+import { useState } from "react";
 
 const ProductCard = ({ product, imgSrc }) => {
+  let [isInCart, setIsInCart] = useState(null)
   const dispatch = useDispatch();
   const cartList = useSelector(state => state.cart.cartList)
   console.log(cartList);
 
   const addToCart = (id) => {
-    dispatch(addProductToCart(id))
-  }
+    const isItemExist = cartList.find(el => el === id)
+    if(!isItemExist) {
+      dispatch(addProductToCart(id));
+      setIsInCart(true)
+      return isItemExist
+    } else {
+      return
+    }
+
+  };
 
   const price = product.price;
   const discountPrice = product["discont_price"];
@@ -22,7 +32,7 @@ const ProductCard = ({ product, imgSrc }) => {
         {discountPrice && (
           <div className="product-item__product">{percent}%</div>
         )}
-        <img className="product-item__img" src={imgSrc} height={284}></img>
+        <img className="product-item__img" src={imgSrc && imgSrc} height={284}></img>
         <button className="product-item__btn-cart" onClick={() => addToCart(product.id)}>Add to cart</button>
       </div>
       <h3 className="product-item__title">{product.title}</h3>

@@ -37,3 +37,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 // think about apply filters btn
 // фильтер применяется по цене которая старая если есть скидка
 // select change handler is too long
+
+// бывает падает приложение из-за shopping cart undefined image
+// округлить сумму в корзине, а то бывает 58.42384328423842382438

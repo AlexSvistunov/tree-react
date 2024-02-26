@@ -17,7 +17,6 @@ const ShoppingCart = () => {
 
   useEffect(() => {
     updatePrice()
-    // not always need to only RAISE PRICE
   }, [cartList])
 
   let [totalAmount, setTotalAmount] = useState(0)
@@ -54,18 +53,23 @@ const ShoppingCart = () => {
 
           <div className="cart__wrapper">
             <ul className="cart__list list-reset">
-              {cartList.map((productId) => {
+              {allProducts && cartList.map((productId) => {
+              
                 const product = allProducts.find(
                   (product) => product.id === productId
                 );
 
+                if(!allProducts) {
+                  return
+                }
 
+        
                 return (
                   <li key={product.id} className="cart-item">
                     <img
                       style={{width: '200px', height: '180px'}}
                       className="cart-item__img"
-                      src={product.image && `/backend/public${product.image}`}
+                      src={`/backend/public${product.image}`}
                     ></img>
                     <div className="cart-item__info">
                       <h3 className="cart-item__title">{product.title}</h3>
@@ -91,12 +95,11 @@ const ShoppingCart = () => {
 
             <div className="cart-details">
               <h3 className="cart-details__title">Order details</h3>
-              <span className="cart-details__items">4 items</span>
+              <span className="cart-details__items">{cartList.length ? (cartList.length + ' item' + (cartList.length !== 1 ? 's' : '')) : '0 items'}</span>
               <div className="cart-details__total">
                 <span className="cart-details__total-head">Total</span>
                 <span className="cart-details__total-sum">${totalAmount}</span>
               </div>
-
               <form className="cart-order">
                 <div className="cart-order__inputs">
                   <input

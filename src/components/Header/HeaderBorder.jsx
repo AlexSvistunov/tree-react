@@ -54,7 +54,7 @@ const HeaderBorder = () => {
 
             <Link to={"/cart"}>
               <div className="cart header__cart">
-                <div className="header__cart-circle">{amount}</div>
+                <div className="header__cart-circle" style={!amount ? {opacity: '0'} : {opacity: '1'}}>{amount}</div>
                 <svg
                   width="48"
                   height="48"
