@@ -3,8 +3,16 @@ import { useGetProductsQuery } from "../../store/apiSlice";
 import ProductCard from "../ProductCard/ProductCard";
 import '../ProductCard/ProductCard.css'
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getProducts } from "../../store/productsSlice";
 
 const Sale = () => {
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(getProducts());
+  }, [dispatch]);
+  const allProducts = useSelector((state) => state.products.productsList);
   const query = useGetProductsQuery();
   const data = query && query.data;
   const sales = data && data.filter((product) => product["discont_price"]);

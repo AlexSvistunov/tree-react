@@ -9,24 +9,22 @@ import { getProducts } from "../../store/productsSlice";
 import { deleteProductFromCart } from "../../store/cartSlice";
 
 const ShoppingCart = () => {
-  const cartList = useSelector((state) => state.cart.cartList);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getProducts());
   }, [dispatch]);
-
+  const allProducts = useSelector((state) => state.products.productsList);
+  const cartList = useSelector((state) => state.cart.cartList);
   useEffect(() => {
     updatePrice()
   }, [cartList])
 
   let [totalAmount, setTotalAmount] = useState(0)
 
-  const allProducts = useSelector((state) => state.products.productsList);
-
   const updatePrice = () => {
     let totalPrice = 0;
     cartList.forEach((itemId) => {
-        const item = allProducts.find((product) => product.id === itemId);
+        const item = allProducts && allProducts.find((product) => product.id === itemId);
         totalPrice += item.price;
     });
     setTotalAmount(totalPrice);
@@ -53,43 +51,41 @@ const ShoppingCart = () => {
 
           <div className="cart__wrapper">
             <ul className="cart__list list-reset">
-              {allProducts && cartList.map((productId) => {
+              {cartList.map((productId) => {
               
                 const product = allProducts.find(
                   (product) => product.id === productId
                 );
 
-                if(!allProducts) {
-                  return
-                }
 
-        
-                return (
-                  <li key={product.id} className="cart-item">
-                    <img
-                      style={{width: '200px', height: '180px'}}
-                      className="cart-item__img"
-                      src={`/backend/public${product.image}`}
-                    ></img>
-                    <div className="cart-item__info">
-                      <h3 className="cart-item__title">{product.title}</h3>
-                      <div className="cart-item__bottom">
-                        <div className="product-about__inner">
-                          <button className="product-about__plus">+</button>
-                          <div className="product-about__number">1</div>
-                          <button className="product-about__minus">-</button>
-                        </div>
-
-                        <div className="cart-item__prices">
-                          <div className="cart-item__currentprice">${product.price}</div>
-                          <div className="cart-item__oldprice">$240</div>
+                if(allProducts) {
+                  return (
+                    <li key={product.id} className="cart-item">
+                      <img
+                        style={{width: '200px', height: '180px'}}
+                        className="cart-item__img"
+                        src={`/backend/public${product.image}`}
+                      ></img>
+                      <div className="cart-item__info">
+                        <h3 className="cart-item__title">{product.title}</h3>
+                        <div className="cart-item__bottom">
+                          <div className="product-about__inner">
+                            <button className="product-about__plus">+</button>
+                            <div className="product-about__number">1</div>
+                            <button className="product-about__minus">-</button>
+                          </div>
+  
+                          <div className="cart-item__prices">
+                            <div className="cart-item__currentprice">${product.price}</div>
+                            <div className="cart-item__oldprice">$240</div>
+                          </div>
                         </div>
                       </div>
-                    </div>
-
-                    <button className="cart-item__delete-btn" onClick={() => deleteItemFromCart(product.id)}></button>
-                  </li>
-                );
+  
+                      <button className="cart-item__delete-btn" onClick={() => deleteItemFromCart(product.id)}></button>
+                    </li>
+                  );
+                }
               })}
             </ul>
 
