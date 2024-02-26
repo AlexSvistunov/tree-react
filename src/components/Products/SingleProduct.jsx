@@ -8,21 +8,36 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 
 const SingleProduct = () => {
+  let [amountOfProduct, setAmountOfProduct] = useState(1);
   const dispatch = useDispatch();
   const cartList = useSelector((state) => state.cart.cartList);
   const { id } = useParams();
   const request = useGetProductQuery(id);
   const data = request.data;
   const object = data && data[0];
+  console.log(amountOfProduct);
   const addToCart = (id) => {
-    const isItemExist = cartList.find(el => el === id)
-    if(!isItemExist) {
+    const isItemExist = cartList.find((el) => el === id);
+    if (!isItemExist) {
       dispatch(addProductToCart(id));
-      return isItemExist
+      return isItemExist;
     } else {
-      return
+      return;
     }
+  };
 
+  const plusAmountOfProduct = () => {
+    setAmountOfProduct(++amountOfProduct)
+
+  
+  };
+
+  const minusAmountOfProduct = () => {
+    if(amountOfProduct > 1) {
+      setAmountOfProduct(--amountOfProduct)
+    }
+ 
+    
   };
   return (
     <div>
@@ -62,17 +77,33 @@ const SingleProduct = () => {
 
             <div className="product-about__amount">
               <div className="product-about__inner">
-                <button className="product-about__plus">+</button>
-                <div className="product-about__number">1</div>
-                <button className='product-about__minus'>-</button>
+                <button
+                  className="product-about__plus"
+                  onClick={plusAmountOfProduct}
+                >
+                  +
+                </button>
+                <div className="product-about__number">{amountOfProduct}</div>
+                <button
+                  className="product-about__minus"
+                  onClick={minusAmountOfProduct}
+                >
+                  -
+                </button>
               </div>
               <button
-                className={object && cartList.find(el => el === object.id) ? 'product-about__addtocart product-about__addtocart--incart' : 'product-about__addtocart' }
+                className={
+                  object && cartList.find((el) => el === object.id)
+                    ? "product-about__addtocart product-about__addtocart--incart"
+                    : "product-about__addtocart"
+                }
                 onClick={() => {
-                  addToCart(object.id)
+                  addToCart(object.id);
                 }}
               >
-                {object && cartList.find(el => el === object.id) ? 'Added' : 'Add to cart'}
+                {object && cartList.find((el) => el === object.id)
+                  ? "Added"
+                  : "Add to cart"}
               </button>
             </div>
 

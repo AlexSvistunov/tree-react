@@ -115,7 +115,7 @@ const ShoppingCart = () => {
                 <div className="cart-details__total">
                   <span className="cart-details__total-head">Total</span>
                   <span className="cart-details__total-sum">
-                    ${totalAmount}
+                    ${totalAmount.toFixed(2)}
                   </span>
                 </div>
                 <form className="cart-order">
