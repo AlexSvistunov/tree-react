@@ -20,7 +20,7 @@ const ShoppingCart = () => {
   }, [cartList]);
 
   let [totalAmount, setTotalAmount] = useState(0);
-  let [amountOfProduct, setAmountOfProduct] = useState([...cartList.map((cartItem) => cartItem['amount'])]);
+  let [amountOfProduct, setAmountOfProduct] = useState(cartList.length && [...cartList.map((cartItem) => cartItem['amount'])]);
   console.log(amountOfProduct)
 
   const plusAmountOfProduct = (number, productId) => {
