@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { getProducts } from "../../store/productsSlice";
 import { deleteProductFromCart } from "../../store/cartSlice";
 import { plusProduct } from "../../store/cartSlice";
+import { minusProduct } from "../../store/cartSlice";
 
 const ShoppingCart = () => {
   const dispatch = useDispatch();
@@ -22,24 +23,38 @@ const ShoppingCart = () => {
   console.log(cartList);
 
   let [totalAmount, setTotalAmount] = useState(0)
-  const [cartListAmount, setCartListAmount] = useState(cartList.map((cartListElement) => cartListElement['amount']));
+  let [cartListAmount, setCartListAmount] = useState(cartList.map((cartListElement) => cartListElement['amount']));
   console.log(cartListAmount);
   console.log(totalAmount);
 
   
+  // const plusCartAmount = (index) => {
+  //   dispatch(plusProduct(index))
+  // }
+
   const plusCartAmount = (index) => {
+    const updatedCartListAmount = [...cartListAmount];
+    updatedCartListAmount[index] += 1;
+    setCartListAmount(updatedCartListAmount)
     dispatch(plusProduct(index))
   }
 
-  // нам не нужно это
+  const minusCartAmount = (index) => {
+    const updatedCartListAmount = [...cartListAmount];
+    updatedCartListAmount[index] -= 1;
+    setCartListAmount(updatedCartListAmount)
+    dispatch(minusProduct(index))
+  }
+
+// СДЕЛАТЬ ЧТОБЫ МОЖНО БЫЛО ПЕРЕЙТИ ПО КАРТОЧКЕ ТОВАРА НАЖАВ НА В КОРЗИНЕ НА LINK
 
 
   const updatePrice = () => {
     let totalPrice = 0;
     cartList.forEach((cartItem) => {
       const item =
-        allProducts && allProducts.find((product) => product.id === cartItem.id);
-        const amount = cartItem.amount
+      allProducts && allProducts.find((product) => product.id === cartItem.id);
+      const amount = cartItem.amount
       totalPrice += item.price * amount;
     });
     setTotalAmount(totalPrice);
@@ -91,9 +106,9 @@ const ShoppingCart = () => {
                           <h3 className="cart-item__title">{product.title}</h3>
                           <div className="cart-item__bottom">
                             <div className="product-about__inner">
-                              <button className="product-about__plus" onClick={() => {}}>+</button>
+                              <button className="product-about__plus" onClick={() => {plusCartAmount(index)}}>+</button>
                               <div className="product-about__number">{cartListAmount[index]}</div>
-                              <button className="product-about__minus" onClick={() => {}}>
+                              <button className="product-about__minus" onClick={() => {minusCartAmount(index)}}>
                                 -
                               </button>
                             </div>

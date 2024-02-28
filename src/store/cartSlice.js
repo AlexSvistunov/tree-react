@@ -16,11 +16,15 @@ const cartSlice = createSlice({
       state.cartList.splice(index, 1)
     },
 
-    plusProduct : (state, index) => {
-      state.cartList[index].amount = state.cartList[index].amount + 1
+    plusProduct : (state, action) => {
+      state.cartList[action.payload].amount = state.cartList[action.payload].amount + 1
+    },
+
+    minusProduct : (state, action) => {
+      state.cartList[action.payload].amount = state.cartList[action.payload].amount + 1
     }
   },
 })
 
-export const {addProductToCart, deleteProductFromCart, plusProduct} = cartSlice.actions
+export const {addProductToCart, deleteProductFromCart, plusProduct, minusProduct} = cartSlice.actions
 export default cartSlice.reducer
