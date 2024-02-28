@@ -28,9 +28,6 @@ const ShoppingCart = () => {
   console.log(totalAmount);
 
   
-  // const plusCartAmount = (index) => {
-  //   dispatch(plusProduct(index))
-  // }
 
   const plusCartAmount = (index) => {
     const updatedCartListAmount = [...cartListAmount];
@@ -56,6 +53,9 @@ const ShoppingCart = () => {
       allProducts && allProducts.find((product) => product.id === cartItem.id);
       const amount = cartItem.amount
       totalPrice += item.price * amount;
+      if(amount <= 0) {
+        dispatch(deleteProductFromCart())
+      }
     });
     setTotalAmount(totalPrice);
   };
@@ -124,7 +124,7 @@ const ShoppingCart = () => {
 
                         <button
                           className="cart-item__delete-btn"
-                          onClick={() => deleteItemFromCart(product.id)}
+                          onClick={() => deleteItemFromCart(index)}
                         ></button>
                       </li>
                     );

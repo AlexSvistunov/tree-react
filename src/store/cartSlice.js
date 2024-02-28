@@ -12,8 +12,8 @@ const cartSlice = createSlice({
       state.cartList.push(action.payload)
     },
     deleteProductFromCart: (state, action) => {
-      const index = state.cartList.indexOf(action.payload)
-      state.cartList.splice(index, 1)
+      // const index = state.cartList.indexOf(action.payload)
+      state.cartList.splice(action.payload, 1)
     },
 
     plusProduct : (state, action) => {
