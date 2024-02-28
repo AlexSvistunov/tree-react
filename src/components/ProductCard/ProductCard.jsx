@@ -8,11 +8,12 @@ import './ProductCard.css'
 const ProductCard = ({ product, imgSrc }) => {
   const dispatch = useDispatch();
   const cartList = useSelector(state => state.cart.cartList)
+  console.log(cartList)
 
   const addToCart = (id) => {
     const isItemExist = cartList.find(el => el === id)
     if(!isItemExist) {
-      dispatch(addProductToCart(id));
+      dispatch(addProductToCart({id, amount: 1}));
       return isItemExist
     } else {
       return

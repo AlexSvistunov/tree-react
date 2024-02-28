@@ -20,12 +20,25 @@ const ShoppingCart = () => {
   }, [cartList]);
 
   let [totalAmount, setTotalAmount] = useState(0);
+  let [amountOfProduct, setAmountOfProduct] = useState(1);
+
+  const plusAmountOfProduct = () => {
+    setAmountOfProduct(++amountOfProduct)
+  };
+
+  const minusAmountOfProduct = () => {
+    if(amountOfProduct > 1) {
+      setAmountOfProduct(--amountOfProduct)
+    }
+ 
+  };
+  
 
   const updatePrice = () => {
     let totalPrice = 0;
-    cartList.forEach((itemId) => {
+    cartList.forEach((cartItem) => {
       const item =
-        allProducts && allProducts.find((product) => product.id === itemId);
+        allProducts && allProducts.find((product) => product.id === cartItem.id);
       totalPrice += item.price;
     });
     setTotalAmount(totalPrice);
@@ -60,9 +73,9 @@ const ShoppingCart = () => {
           ) : (
             <div className="cart__wrapper">
               <ul className="cart__list list-reset">
-                {cartList.map((productId) => {
+                {cartList.length && cartList.map((cartItem) => {
                   const product = allProducts.find(
-                    (product) => product.id === productId
+                    (product) => product.id === cartItem.id
                   );
 
                   if (allProducts) {
@@ -77,9 +90,9 @@ const ShoppingCart = () => {
                           <h3 className="cart-item__title">{product.title}</h3>
                           <div className="cart-item__bottom">
                             <div className="product-about__inner">
-                              <button className="product-about__plus">+</button>
-                              <div className="product-about__number">1</div>
-                              <button className="product-about__minus">
+                              <button className="product-about__plus" onClick={plusAmountOfProduct}>+</button>
+                              <div className="product-about__number">{amountOfProduct}</div>
+                              <button className="product-about__minus" onClick={minusAmountOfProduct}>
                                 -
                               </button>
                             </div>

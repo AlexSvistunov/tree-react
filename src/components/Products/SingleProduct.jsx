@@ -11,15 +11,15 @@ const SingleProduct = () => {
   let [amountOfProduct, setAmountOfProduct] = useState(1);
   const dispatch = useDispatch();
   const cartList = useSelector((state) => state.cart.cartList);
+  console.log(cartList)
   const { id } = useParams();
   const request = useGetProductQuery(id);
   const data = request.data;
   const object = data && data[0];
-  console.log(amountOfProduct);
   const addToCart = (id) => {
     const isItemExist = cartList.find((el) => el === id);
     if (!isItemExist) {
-      dispatch(addProductToCart(id));
+      dispatch(addProductToCart({id, amountOfProduct}));
       return isItemExist;
     } else {
       return;
@@ -28,8 +28,6 @@ const SingleProduct = () => {
 
   const plusAmountOfProduct = () => {
     setAmountOfProduct(++amountOfProduct)
-
-  
   };
 
   const minusAmountOfProduct = () => {
@@ -93,7 +91,7 @@ const SingleProduct = () => {
               </div>
               <button
                 className={
-                  object && cartList.find((el) => el === object.id)
+                  object && cartList.find((el) => el.id === object.id)
                     ? "product-about__addtocart product-about__addtocart--incart"
                     : "product-about__addtocart"
                 }
@@ -101,7 +99,7 @@ const SingleProduct = () => {
                   addToCart(object.id);
                 }}
               >
-                {object && cartList.find((el) => el === object.id)
+                {object && cartList.find((el) => el.id === object.id)
                   ? "Added"
                   : "Add to cart"}
               </button>
