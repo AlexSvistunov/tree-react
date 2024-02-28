@@ -37,10 +37,12 @@ const ShoppingCart = () => {
   }
 
   const minusCartAmount = (index) => {
-    const updatedCartListAmount = [...cartListAmount];
-    updatedCartListAmount[index] -= 1;
-    setCartListAmount(updatedCartListAmount)
-    dispatch(minusProduct(index))
+    if(cartListAmount[index] > 1) {
+      const updatedCartListAmount = [...cartListAmount];
+      updatedCartListAmount[index] -= 1;
+      setCartListAmount(updatedCartListAmount)
+      dispatch(minusProduct(index))
+    }
   }
 
 // СДЕЛАТЬ ЧТОБЫ МОЖНО БЫЛО ПЕРЕЙТИ ПО КАРТОЧКЕ ТОВАРА НАЖАВ НА В КОРЗИНЕ НА LINK
@@ -52,9 +54,11 @@ const ShoppingCart = () => {
       const item =
       allProducts && allProducts.find((product) => product.id === cartItem.id);
       const amount = cartItem.amount
+      console.log(amount);
+      console.log(cartItem);
       totalPrice += item.price * amount;
-      if(amount <= 0) {
-        dispatch(deleteProductFromCart())
+      if(cartItem.amount <= 0) {
+        deleteItemFromCart(cartItem.id)
       }
     });
     setTotalAmount(totalPrice);
