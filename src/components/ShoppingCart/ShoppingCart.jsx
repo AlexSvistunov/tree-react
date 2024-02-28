@@ -22,43 +22,43 @@ const ShoppingCart = () => {
   }, [cartList]);
   console.log(cartList);
 
-  let [totalAmount, setTotalAmount] = useState(0)
-  let [cartListAmount, setCartListAmount] = useState(cartList.map((cartListElement) => cartListElement['amount']));
+  let [totalAmount, setTotalAmount] = useState(0);
+  let [cartListAmount, setCartListAmount] = useState(
+    cartList.map((cartListElement) => cartListElement["amount"])
+  );
   console.log(cartListAmount);
   console.log(totalAmount);
-
-  
 
   const plusCartAmount = (index) => {
     const updatedCartListAmount = [...cartListAmount];
     updatedCartListAmount[index] += 1;
-    setCartListAmount(updatedCartListAmount)
-    dispatch(plusProduct(index))
-  }
+    setCartListAmount(updatedCartListAmount);
+    dispatch(plusProduct(index));
+  };
 
   const minusCartAmount = (index) => {
-    if(cartListAmount[index] > 1) {
+    if (cartListAmount[index] > 1) {
       const updatedCartListAmount = [...cartListAmount];
       updatedCartListAmount[index] -= 1;
-      setCartListAmount(updatedCartListAmount)
-      dispatch(minusProduct(index))
+      setCartListAmount(updatedCartListAmount);
+      dispatch(minusProduct(index));
     }
-  }
+  };
 
-// СДЕЛАТЬ ЧТОБЫ МОЖНО БЫЛО ПЕРЕЙТИ ПО КАРТОЧКЕ ТОВАРА НАЖАВ НА В КОРЗИНЕ НА LINK
-
+  // СДЕЛАТЬ ЧТОБЫ МОЖНО БЫЛО ПЕРЕЙТИ ПО КАРТОЧКЕ ТОВАРА НАЖАВ НА В КОРЗИНЕ НА LINK
 
   const updatePrice = () => {
     let totalPrice = 0;
     cartList.forEach((cartItem) => {
       const item =
-      allProducts && allProducts.find((product) => product.id === cartItem.id);
-      const amount = cartItem.amount
+        allProducts &&
+        allProducts.find((product) => product.id === cartItem.id);
+      const amount = cartItem.amount;
       console.log(amount);
       console.log(cartItem);
       totalPrice += item.price * amount;
-      if(cartItem.amount <= 0) {
-        deleteItemFromCart(cartItem.id)
+      if (cartItem.amount <= 0) {
+        deleteItemFromCart(cartItem.id);
       }
     });
     setTotalAmount(totalPrice);
@@ -83,57 +83,81 @@ const ShoppingCart = () => {
             </Link>
           </div>
 
-
           {!cartList.length ? (
-            <div className="cart__wrapper" style={{flexDirection: 'column'}}>
-              <span className="cart__wrapper-no-items">Looks like you have no items in your basket currently.</span>
-              <Link className="cart__wrapper-continue" to={'/products'}>Continue Shopping</Link>
+            <div className="cart__wrapper" style={{ flexDirection: "column" }}>
+              <span className="cart__wrapper-no-items">
+                Looks like you have no items in your basket currently.
+              </span>
+              <Link className="cart__wrapper-continue" to={"/products"}>
+                Continue Shopping
+              </Link>
             </div>
           ) : (
             <div className="cart__wrapper">
               <ul className="cart__list list-reset">
-                {cartList.length && allProducts &&  cartList.map((cartItem, index) => {
-      
-                  const product = allProducts.find(
-                    (product) => product.id === cartItem.id
-                  );
+                {cartList.length &&
+                  allProducts &&
+                  cartList.map((cartItem, index) => {
+                    const product = allProducts.find(
+                      (product) => product.id === cartItem.id
+                    );
 
-                  if (allProducts) {
-                    return (
-                      <li key={product.id} className="cart-item">
-                        <img
-                          style={{ width: "200px", height: "180px" }}
-                          className="cart-item__img"
-                          src={`/backend/public${product.image}`}
-                        ></img>
-                        <div className="cart-item__info">
-                          <h3 className="cart-item__title">{product.title}</h3>
-                          <div className="cart-item__bottom">
-                            <div className="product-about__inner">
-                              <button className="product-about__plus" onClick={() => {plusCartAmount(index)}}>+</button>
-                              <div className="product-about__number">{cartListAmount[index]}</div>
-                              <button className="product-about__minus" onClick={() => {minusCartAmount(index)}}>
-                                -
-                              </button>
-                            </div>
+                    if (allProducts) {
+                      return (
+                        <li className="cart-item" key={product.id}>
+                          <img
+                            style={{ width: "200px", height: "100%" }}
+                            className="cart-item__img"
+                            src={`/backend/public${product.image}`}
+                          ></img>
+                          <div className="cart-item__info">
+                            <Link to={`/products/${product.id}`}>
+                              <h3 className="cart-item__title">
+                                {product.title}
+                              </h3>
+                            </Link>
 
-                            <div className="cart-item__prices">
-                              <div className="cart-item__currentprice">
-                                ${product.price}
+                            <div className="cart-item__bottom">
+                              <div className="product-about__inner">
+                                <button
+                                  className="product-about__plus"
+                                  onClick={() => {
+                                    plusCartAmount(index);
+                                  }}
+                                >
+                                  +
+                                </button>
+                                <div className="product-about__number">
+                                  {cartListAmount[index]}
+                                </div>
+                                <button
+                                  className="product-about__minus"
+                                  onClick={() => {
+                                    minusCartAmount(index);
+                                  }}
+                                >
+                                  -
+                                </button>
                               </div>
-                              <div className="cart-item__oldprice">$240</div> {/* HERE IS A MISTAKE*/}
+
+                              <div className="cart-item__prices">
+                                <div className="cart-item__currentprice">
+                                  ${product.price}
+                                </div>
+                                <div className="cart-item__oldprice">$240</div>{" "}
+                                {/* HERE IS A MISTAKE*/}
+                              </div>
                             </div>
                           </div>
-                        </div>
 
-                        <button
-                          className="cart-item__delete-btn"
-                          onClick={() => deleteItemFromCart(index)}
-                        ></button>
-                      </li>
-                    );
-                  }
-                })}
+                          <button
+                            className="cart-item__delete-btn"
+                            onClick={() => deleteItemFromCart(index)}
+                          ></button>
+                        </li>
+                      );
+                    }
+                  })}
               </ul>
 
               <div className="cart-details">
@@ -149,7 +173,6 @@ const ShoppingCart = () => {
                   <span className="cart-details__total-head">Total</span>
                   <span className="cart-details__total-sum">
                     ${totalAmount.toFixed(2)}
-
                   </span>
                 </div>
                 <form className="cart-order">
