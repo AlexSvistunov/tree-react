@@ -20,14 +20,16 @@ const ShoppingCart = () => {
   }, [cartList]);
 
   let [totalAmount, setTotalAmount] = useState(0);
-  let [amountOfProduct, setAmountOfProduct] = useState(1);
+  let [amountOfProduct, setAmountOfProduct] = useState([...cartList.map((cartItem) => cartItem['amount'])]);
+  console.log(amountOfProduct)
 
-  const plusAmountOfProduct = () => {
-    setAmountOfProduct(++amountOfProduct)
+  const plusAmountOfProduct = (number, productId) => {
+    setAmountOfProduct((prev) => [...prev, amountOfProduct[productId] = number])
+
   };
 
-  const minusAmountOfProduct = () => {
-    if(amountOfProduct > 1) {
+  const minusAmountOfProduct = (product) => {
+    if(product.amountOfProduct > 1) {
       setAmountOfProduct(--amountOfProduct)
     }
  
@@ -39,7 +41,8 @@ const ShoppingCart = () => {
     cartList.forEach((cartItem) => {
       const item =
         allProducts && allProducts.find((product) => product.id === cartItem.id);
-      totalPrice += item.price;
+        const amount = cartItem.amount
+      totalPrice += item.price * amount;
     });
     setTotalAmount(totalPrice);
   };
@@ -73,7 +76,8 @@ const ShoppingCart = () => {
           ) : (
             <div className="cart__wrapper">
               <ul className="cart__list list-reset">
-                {cartList.length && cartList.map((cartItem) => {
+                {cartList.length && cartList.map((cartItem, index) => {
+      
                   const product = allProducts.find(
                     (product) => product.id === cartItem.id
                   );
@@ -90,9 +94,9 @@ const ShoppingCart = () => {
                           <h3 className="cart-item__title">{product.title}</h3>
                           <div className="cart-item__bottom">
                             <div className="product-about__inner">
-                              <button className="product-about__plus" onClick={plusAmountOfProduct}>+</button>
-                              <div className="product-about__number">{amountOfProduct}</div>
-                              <button className="product-about__minus" onClick={minusAmountOfProduct}>
+                              <button className="product-about__plus" onClick={plusAmountOfProduct(product)}>+</button>
+                              <div className="product-about__number">{() => amountOfProduct[0]}</div>
+                              <button className="product-about__minus" onClick={() => minusAmountOfProduct(product)}>
                                 -
                               </button>
                             </div>
@@ -101,7 +105,7 @@ const ShoppingCart = () => {
                               <div className="cart-item__currentprice">
                                 ${product.price}
                               </div>
-                              <div className="cart-item__oldprice">$240</div>
+                              <div className="cart-item__oldprice">$240</div> {/* HERE IS A MISTAKE*/}
                             </div>
                           </div>
                         </div>
