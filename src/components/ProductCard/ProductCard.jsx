@@ -11,7 +11,8 @@ const ProductCard = ({ product, imgSrc }) => {
   console.log(cartList);
 
   const addToCart = (id) => {
-    const isItemExist = cartList.find(el => el === id)
+    console.log(id);
+    const isItemExist = cartList.find(el => el.id === id)
     if(!isItemExist) {
       dispatch(addProductToCart({id, amount: 1}));
       return isItemExist
@@ -34,12 +35,12 @@ const ProductCard = ({ product, imgSrc }) => {
         <img className="product-item__img" src={imgSrc && imgSrc} height={284}></img>
         {/* <button className="product-item__btn-cart" onClick={() => addToCart(product.id)}>Add to cart</button> */}
         <button
-                className={cartList.find(el => el === product.id) ? 'product-item__btn-cart product-item__btn-cart--incart' : 'product-item__btn-cart' }
+                className={cartList.find(el => el.id === product.id) ? 'product-item__btn-cart product-item__btn-cart--incart' : 'product-item__btn-cart' }
                 onClick={() => {
                   addToCart(product.id)
                 }}
               >
-                {cartList.find(el => el === product.id) ? 'Added' : 'Add to cart'}
+                {cartList.find(el => el.id === product.id) ? 'Added' : 'Add to cart'}
               </button>
       </div>
       <h3 className="product-item__title">{product.title}</h3>
