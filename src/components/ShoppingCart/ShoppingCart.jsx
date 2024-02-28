@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { getProducts } from "../../store/productsSlice";
 import { deleteProductFromCart } from "../../store/cartSlice";
+import { plusProduct } from "../../store/cartSlice";
 
 const ShoppingCart = () => {
   const dispatch = useDispatch();
@@ -18,23 +19,20 @@ const ShoppingCart = () => {
   useEffect(() => {
     updatePrice();
   }, [cartList]);
+  console.log(cartList);
 
-  let [totalAmount, setTotalAmount] = useState(0);
-  let [amountOfProduct, setAmountOfProduct] = useState(cartList.length && [...cartList.map((cartItem) => cartItem['amount'])]);
-  console.log(amountOfProduct)
+  let [totalAmount, setTotalAmount] = useState(0)
+  const [cartListAmount, setCartListAmount] = useState(cartList.map((cartListElement) => cartListElement['amount']));
+  console.log(cartListAmount);
+  console.log(totalAmount);
 
-  const plusAmountOfProduct = (number, productId) => {
-    setAmountOfProduct((prev) => [...prev, amountOfProduct[productId] = number])
-
-  };
-
-  const minusAmountOfProduct = (product) => {
-    if(product.amountOfProduct > 1) {
-      setAmountOfProduct(--amountOfProduct)
-    }
- 
-  };
   
+  const plusCartAmount = (index) => {
+    dispatch(plusProduct(index))
+  }
+
+  // нам не нужно это
+
 
   const updatePrice = () => {
     let totalPrice = 0;
@@ -66,7 +64,6 @@ const ShoppingCart = () => {
             </Link>
           </div>
 
-          {/* <div className="cart__wrapper"></div> */}
 
           {!cartList.length ? (
             <div className="cart__wrapper" style={{flexDirection: 'column'}}>
@@ -76,7 +73,7 @@ const ShoppingCart = () => {
           ) : (
             <div className="cart__wrapper">
               <ul className="cart__list list-reset">
-                {cartList.length && cartList.map((cartItem, index) => {
+                {cartList.length && allProducts &&  cartList.map((cartItem, index) => {
       
                   const product = allProducts.find(
                     (product) => product.id === cartItem.id
@@ -94,9 +91,9 @@ const ShoppingCart = () => {
                           <h3 className="cart-item__title">{product.title}</h3>
                           <div className="cart-item__bottom">
                             <div className="product-about__inner">
-                              <button className="product-about__plus" onClick={plusAmountOfProduct(product)}>+</button>
-                              <div className="product-about__number">{() => amountOfProduct[0]}</div>
-                              <button className="product-about__minus" onClick={() => minusAmountOfProduct(product)}>
+                              <button className="product-about__plus" onClick={() => {}}>+</button>
+                              <div className="product-about__number">{cartListAmount[index]}</div>
+                              <button className="product-about__minus" onClick={() => {}}>
                                 -
                               </button>
                             </div>
@@ -133,6 +130,7 @@ const ShoppingCart = () => {
                   <span className="cart-details__total-head">Total</span>
                   <span className="cart-details__total-sum">
                     ${totalAmount.toFixed(2)}
+
                   </span>
                 </div>
                 <form className="cart-order">

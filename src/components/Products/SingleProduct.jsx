@@ -6,9 +6,11 @@ import "./SingleProduct.css";
 import { addProductToCart } from "../../store/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
+import { useEffect } from "react";
+import { getProducts } from "../../store/productsSlice";
 
 const SingleProduct = () => {
-  let [amountOfProduct, setAmountOfProduct] = useState(1);
+  let [amount, setAmount] = useState(1);
   const dispatch = useDispatch();
   const cartList = useSelector((state) => state.cart.cartList);
   console.log(cartList)
@@ -16,10 +18,13 @@ const SingleProduct = () => {
   const request = useGetProductQuery(id);
   const data = request.data;
   const object = data && data[0];
+  useEffect(() => {
+    dispatch(getProducts());
+  }, [dispatch]);
   const addToCart = (id) => {
     const isItemExist = cartList.find((el) => el === id);
     if (!isItemExist) {
-      dispatch(addProductToCart({id, amountOfProduct}));
+      dispatch(addProductToCart({id, amount}));
       return isItemExist;
     } else {
       return;
@@ -27,12 +32,12 @@ const SingleProduct = () => {
   };
 
   const plusAmountOfProduct = () => {
-    setAmountOfProduct(++amountOfProduct)
+    setAmount(++amount)
   };
 
   const minusAmountOfProduct = () => {
-    if(amountOfProduct > 1) {
-      setAmountOfProduct(--amountOfProduct)
+    if(amount > 1) {
+      setAmount(--amount)
     }
  
     
@@ -81,7 +86,7 @@ const SingleProduct = () => {
                 >
                   +
                 </button>
-                <div className="product-about__number">{amountOfProduct}</div>
+                <div className="product-about__number">{amount}</div>
                 <button
                   className="product-about__minus"
                   onClick={minusAmountOfProduct}
