@@ -21,7 +21,7 @@ const cartSlice = createSlice({
     },
 
     minusProduct : (state, action) => {
-      state.cartList[action.payload].amount = state.cartList[action.payload].amount + 1
+      state.cartList[action.payload].amount = state.cartList[action.payload].amount - 1
     }
   },
 })
