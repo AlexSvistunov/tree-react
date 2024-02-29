@@ -1,14 +1,36 @@
-
 import "./FirstOrder.css";
 import axios from "axios";
 import { URL } from "../../utils/constants";
+import { useState } from "react";
 
 const FirstOrder = () => {
-  const handleDiscountDiscount = () => {
-    axios.post(`${URL}/sale/send`, {
-      
-    })
-  }
+  const [nameValue, setNameValue] = useState("");
+  const [phoneValue, setPhoneValue] = useState("");
+  const [emailValue, setEmailValue] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+
+  console.log(nameValue);
+  console.log(phoneValue);
+  console.log(emailValue);
+
+  const handleDiscountDiscount = (e) => {
+    e.preventDefault();
+    axios
+      .post(`${URL}/sale/send`, {
+        name: nameValue,
+        phone: phoneValue,
+        email: emailValue,
+      })
+
+      .then((response) => {
+        console.log(response);
+        if(response.status === 200) {
+          setSubmitted(true);
+        }
+      })
+
+      .catch((error) => console.log(error));
+  };
   return (
     <section className="first-order">
       <div className="container">
@@ -20,24 +42,40 @@ const FirstOrder = () => {
               src="/src/images/first-order-img.png"
             ></img>
 
-            <form className="first-order__form">
+            <form
+              className="first-order__form"
+              onSubmit={handleDiscountDiscount}
+            >
               <input
+                value={nameValue}
+                onChange={(e) => setNameValue(e.target.value)}
                 className="first-order__input"
                 placeholder="Name"
                 type="text"
               ></input>
               <input
+                value={phoneValue}
+                onChange={(e) => setPhoneValue(e.target.value)}
                 className="first-order__input"
                 placeholder="Phone number"
                 type="tel"
               ></input>
               <input
+                value={emailValue}
+                onChange={(e) => setEmailValue(e.target.value)}
                 className="first-order__input"
                 placeholder="Email"
                 type="email"
               ></input>
-              <button className="first-order__btn" type="submit">
-                Get a discount
+              <button
+                className={
+                  submitted
+                    ? "first-order__btn first-order__btn--submitted"
+                    : "first-order__btn"
+                }
+                type="submit"
+              >
+                {submitted ? 'Request Submitted' : 'Get a discount'}
               </button>
             </form>
           </div>

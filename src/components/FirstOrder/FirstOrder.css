@@ -81,3 +81,8 @@
     color: var(--white);
     transition: 0.25s ease-in-out;
 }
+
+.first-order__btn.first-order__btn--submitted {
+    background-color: var(--white);
+    color: var(--green);
+}
