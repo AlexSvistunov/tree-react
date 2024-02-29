@@ -13,7 +13,7 @@ const FirstOrder = () => {
   console.log(phoneValue);
   console.log(emailValue);
 
-  const handleDiscountDiscount = (e) => {
+  const handleGetDiscount = (e) => {
     e.preventDefault();
     axios
       .post(`${URL}/sale/send`, {
@@ -44,7 +44,7 @@ const FirstOrder = () => {
 
             <form
               className="first-order__form"
-              onSubmit={handleDiscountDiscount}
+              onSubmit={handleGetDiscount}
             >
               <input
                 value={nameValue}

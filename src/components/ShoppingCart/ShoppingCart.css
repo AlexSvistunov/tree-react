@@ -192,6 +192,7 @@
 }
 
 .cart-order__btn {
+  border: 1px solid transparent;
   border-radius: 6px;
   padding: 16px 32px;
   width: 100%;
@@ -205,6 +206,12 @@
   cursor: pointer;
   border: none;
   margin-top: 32px;
+}
+
+.cart-order__btn.cart-order__btn--placed {
+  background-color: var(--white);
+  color: var(--black);
+  border: 1px solid var(--black);
 }
 
 .cart-wrapper__line {

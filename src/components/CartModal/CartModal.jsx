@@ -13,7 +13,7 @@ const CartModal = ({ modalActive, setModalActive }) => {
             A manager will contact you shortly to confirm your order.
           </p>
 
-          <button className="modal__close-btn"></button>
+          <button className="modal__close-btn" onClick={() => setModalActive(false)}></button>
         </div>
       </div>
     </div>

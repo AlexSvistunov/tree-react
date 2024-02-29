@@ -10,10 +10,42 @@ import { deleteProductFromCart } from "../../store/cartSlice";
 import { plusProduct } from "../../store/cartSlice";
 import { minusProduct } from "../../store/cartSlice";
 import CartModal from "../CartModal/CartModal";
-import Modal from 'react-modal'
+import axios from "axios";
+import { URL } from "../../utils/constants";
 
 const ShoppingCart = () => {
+  const [nameValue, setNameValue] = useState("");
+  const [phoneValue, setPhoneValue] = useState("");
+  const [emailValue, setEmailValue] = useState("");
+  const [submitted, setSubmitted] = useState(false);
   
+  const [modalActive, setModalActive] = useState(false)
+
+  console.log(nameValue);
+  console.log(phoneValue);
+  console.log(emailValue);
+
+  const handleOrder = (e) => {
+    e.preventDefault();
+    axios
+      .post(`${URL}/order/send`, {
+        name: nameValue,
+        phone: phoneValue,
+        email: emailValue,
+        cartList: cartList,
+      })
+
+      .then((response) => {
+        console.log(response);
+        if(response.status === 200) {
+          setSubmitted(true);
+          setModalActive(true)
+        }
+      })
+
+      .catch((error) => console.log(error));
+  };
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getProducts());
@@ -23,7 +55,6 @@ const ShoppingCart = () => {
   useEffect(() => {
     updatePrice();
   }, [cartList]);
-  console.log(cartList);
 
   let [totalAmount, setTotalAmount] = useState(0);
   let [cartListAmount, setCartListAmount] = useState(
@@ -68,7 +99,6 @@ const ShoppingCart = () => {
     dispatch(deleteProductFromCart(productId));
   };
 
-  const [modalActive, setModalActive] = useState(false)
 
 
   return (
@@ -181,25 +211,31 @@ const ShoppingCart = () => {
                     ${totalAmount.toFixed(2)}
                   </span>
                 </div>
-                <form className="cart-order">
+                <form className="cart-order" onSubmit={handleOrder}>
                   <div className="cart-order__inputs">
                     <input
+                      value={nameValue}
+                      onChange={(e) => setNameValue(e.target.value)}
                       className="cart-order__input"
                       placeholder="Name"
                       type="text"
                     ></input>
                     <input
+                      value={phoneValue}
+                      onChange={(e) => setPhoneValue(e.target.value)}
                       className="cart-order__input"
                       placeholder="Phone number"
                       type="tel"
                     ></input>
                     <input
+                      value={emailValue}
+                      onChange={(e) => setEmailValue(e.target.value)}
                       className="cart-order__input"
                       placeholder="Email"
                       type="email"
                     ></input>
                   </div>
-                  <button className="cart-order__btn">Order</button>
+                  <button className={submitted ? 'cart-order__btn cart-order__btn--placed' : "cart-order__btn"}>{submitted ? 'The order is Placed' : 'Order'}</button>
                 </form>
               </div>
             </div>
