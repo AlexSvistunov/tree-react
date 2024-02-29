@@ -3,12 +3,19 @@ import { useGetProductsQuery } from "../../store/apiSlice";
 import ProductCard from "../ProductCard/ProductCard";
 import Sort from "../Sort/Sort";
 import { useState } from "react";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { getProducts } from "../../store/productsSlice";
 
 const AllSales = () => {
   const [priceFrom, setPriceFrom] = useState("");
   const [priceTo, setPriceTo] = useState("");
   const [sortBy, setSortBy] = useState("by default");
   const [filteredProducts, setFilteredProducts] = useState([]);
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(getProducts());
+  }, [dispatch]);
 
   const query = useGetProductsQuery();
   const data = query && query.data;
