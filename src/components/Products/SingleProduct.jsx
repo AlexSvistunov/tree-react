@@ -16,11 +16,23 @@ const SingleProduct = () => {
   console.log(cartList)
   const { id } = useParams();
   const request = useGetProductQuery(id);
+
   const data = request.data;
   const object = data && data[0];
   useEffect(() => {
     dispatch(getProducts());
   }, [dispatch]);
+
+  // const productsList = useSelector((state) => state.products.productsList)
+  
+  // const product = productsList.find(el => el.id === id);
+
+  // if (!product) {
+  //   return <Redirect to="/404" />;
+  // }
+
+  
+
   const addToCart = (id) => {
     const isItemExist = cartList.find((el) => el === id);
     if (!isItemExist) {
