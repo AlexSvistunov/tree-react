@@ -233,3 +233,11 @@
   max-width: 313px;
   width: 100%;
 }
+
+.product-about__oldprice.cart-about__oldprice {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 130%;
+  text-decoration: line-through;
+  color: var(--grey);
+}

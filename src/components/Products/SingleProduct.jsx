@@ -58,12 +58,13 @@ const SingleProduct = () => {
             <h3 className="product-about__title">{data && object.title}</h3>
             <div className="product-about__prices">
               <span className="product-about__currentprice">
-                {data && "$" + object.price}
+                {data && object['discont_price'] ? "$" + object["discont_price"] : data && object.price + "$"}
               </span>
 
               {data && object["discont_price"] && (
                 <span className="product-about__oldprice">
-                  {data ? "$" + object.discont_price : null}
+                  {data && object["discont_price"] ? "$" + (data && object.price) : null}
+                  
                 </span>
               )}
 

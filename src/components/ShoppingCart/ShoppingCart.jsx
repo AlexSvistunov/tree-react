@@ -56,7 +56,7 @@ const ShoppingCart = () => {
       const amount = cartItem.amount;
       console.log(amount);
       console.log(cartItem);
-      totalPrice += item.price * amount;
+      totalPrice += (item['discont_price'] ? item['discont_price'] : item.price) * amount;
       if (cartItem.amount <= 0) {
         deleteItemFromCart(cartItem.id);
       }
@@ -142,10 +142,13 @@ const ShoppingCart = () => {
 
                               <div className="cart-item__prices">
                                 <div className="cart-item__currentprice">
-                                  ${product.price}
+                                {product.discont_price ? "$" + product["discont_price"] : product.price + "$"}
                                 </div>
-                                <div className="cart-item__oldprice">$240</div>{" "}
-                                {/* HERE IS A MISTAKE*/}
+                                {product["discont_price"] && (
+                                  <span className="product-about__oldprice cart-about__oldprice">
+                                    {product["discont_price"] ? "$" + product.price : null}
+                                  </span>
+                                )}
                               </div>
                             </div>
                           </div>
