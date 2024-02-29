@@ -16,6 +16,8 @@ const Sort = ({
     applyFilters({ priceFrom, priceTo, showDiscounted, sortBy });
   };
 
+  console.log(showDiscounted);
+
   return (
     <div className="sort">
       <label>
@@ -34,14 +36,15 @@ const Sort = ({
         ></input>
       </label>
 
-      <label className={sale ? "sale-hidden" : null}>
+      <label className={sale ? "sale-hidden" : 'custom-checkbox__label'}>
         <span>Discounted items</span>
         <input
-          className="sort__input-discount"
+          className="sort__input-discount visually-hidden"
           type="checkbox"
           checked={showDiscounted}
           onChange={() => setShowDiscounted(!showDiscounted)}
         ></input>
+        <div className="custom-checkbox"></div>
       </label>
 
       <label>
