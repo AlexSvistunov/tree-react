@@ -2,35 +2,24 @@ import "./FirstOrder.css";
 import axios from "axios";
 import { URL } from "../../utils/constants";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
 
 const FirstOrder = () => {
-  const [nameValue, setNameValue] = useState("");
-  const [phoneValue, setPhoneValue] = useState("");
-  const [emailValue, setEmailValue] = useState("");
+  const { register, handleSubmit, formState: { errors } } = useForm();
   const [submitted, setSubmitted] = useState(false);
 
-  console.log(nameValue);
-  console.log(phoneValue);
-  console.log(emailValue);
-
-  const handleGetDiscount = (e) => {
-    e.preventDefault();
+  const onSubmit = (data) => {
     axios
-      .post(`${URL}/sale/send`, {
-        name: nameValue,
-        phone: phoneValue,
-        email: emailValue,
-      })
-
+      .post(`${URL}/sale/send`, data)
       .then((response) => {
         console.log(response);
         if(response.status === 200) {
           setSubmitted(true);
         }
       })
-
       .catch((error) => console.log(error));
   };
+
   return (
     <section className="first-order">
       <div className="container">
@@ -44,29 +33,32 @@ const FirstOrder = () => {
 
             <form
               className="first-order__form"
-              onSubmit={handleGetDiscount}
+              onSubmit={handleSubmit(onSubmit)}
             >
               <input
-                value={nameValue}
-                onChange={(e) => setNameValue(e.target.value)}
+                {...register("name", { required: true })}
                 className="first-order__input"
                 placeholder="Name"
                 type="text"
               ></input>
+              {errors.name && <span>This field is required</span>}
+
               <input
-                value={phoneValue}
-                onChange={(e) => setPhoneValue(e.target.value)}
+                {...register("phone", { required: true })}
                 className="first-order__input"
                 placeholder="Phone number"
                 type="tel"
               ></input>
+              {errors.phone && <span>This field is required</span>}
+
               <input
-                value={emailValue}
-                onChange={(e) => setEmailValue(e.target.value)}
+                {...register("email", { required: true })}
                 className="first-order__input"
                 placeholder="Email"
                 type="email"
               ></input>
+              {errors.email && <span>This field is required</span>}
+
               <button
                 className={
                   submitted

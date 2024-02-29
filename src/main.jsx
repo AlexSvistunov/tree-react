@@ -19,8 +19,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 
 
 
-
-
 // newest(updated at) + write this sorting function by myself
 // think about apply filters btn
 // фильтер применяется по цене которая старая если есть скидка

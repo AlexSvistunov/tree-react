@@ -12,37 +12,32 @@ import { minusProduct } from "../../store/cartSlice";
 import CartModal from "../CartModal/CartModal";
 import axios from "axios";
 import { URL } from "../../utils/constants";
+import { useForm } from "react-hook-form";
 
 const ShoppingCart = () => {
-  const [nameValue, setNameValue] = useState("");
-  const [phoneValue, setPhoneValue] = useState("");
-  const [emailValue, setEmailValue] = useState("");
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const [submitted, setSubmitted] = useState(false);
-  
-  const [modalActive, setModalActive] = useState(false)
+  const [modalActive, setModalActive] = useState(false);
 
-  console.log(nameValue);
-  console.log(phoneValue);
-  console.log(emailValue);
-
-  const handleOrder = (e) => {
-    e.preventDefault();
+  const onSubmit = (data) => {
     axios
       .post(`${URL}/order/send`, {
-        name: nameValue,
-        phone: phoneValue,
-        email: emailValue,
+        name: data.name,
+        phone: data.phone,
+        email: data.email,
         cartList: cartList,
       })
-
       .then((response) => {
         console.log(response);
-        if(response.status === 200) {
+        if (response.status === 200) {
           setSubmitted(true);
-          setModalActive(true)
+          setModalActive(true);
         }
       })
-
       .catch((error) => console.log(error));
   };
 
@@ -77,7 +72,6 @@ const ShoppingCart = () => {
     }
   };
 
-
   const updatePrice = () => {
     let totalPrice = 0;
     cartList.forEach((cartItem) => {
@@ -87,7 +81,8 @@ const ShoppingCart = () => {
       const amount = cartItem.amount;
       console.log(amount);
       console.log(cartItem);
-      totalPrice += (item['discont_price'] ? item['discont_price'] : item.price) * amount;
+      totalPrice +=
+        (item["discont_price"] ? item["discont_price"] : item.price) * amount;
       if (cartItem.amount <= 0) {
         deleteItemFromCart(cartItem.id);
       }
@@ -99,12 +94,10 @@ const ShoppingCart = () => {
     dispatch(deleteProductFromCart(productId));
   };
 
-
-
   return (
     <>
       <HeaderBorder />
-      <section className="cart" style={{position: 'relative'}}>
+      <section className="cart" style={{ position: "relative" }}>
         <div className="container">
           <div className="cart__inner">
             <div className="wrapper-line cart-wrapper__line">
@@ -175,11 +168,15 @@ const ShoppingCart = () => {
 
                               <div className="cart-item__prices">
                                 <div className="cart-item__currentprice">
-                                {product.discont_price ? "$" + product["discont_price"] : product.price + "$"}
+                                  {product.discont_price
+                                    ? "$" + product["discont_price"]
+                                    : product.price + "$"}
                                 </div>
                                 {product["discont_price"] && (
                                   <span className="product-about__oldprice cart-about__oldprice">
-                                    {product["discont_price"] ? "$" + product.price : null}
+                                    {product["discont_price"]
+                                      ? "$" + product.price
+                                      : null}
                                   </span>
                                 )}
                               </div>
@@ -211,44 +208,57 @@ const ShoppingCart = () => {
                     ${totalAmount.toFixed(2)}
                   </span>
                 </div>
-                <form className="cart-order" onSubmit={handleOrder}>
+                <form onSubmit={handleSubmit(onSubmit)} className="cart-order">
                   <div className="cart-order__inputs">
                     <input
-                      value={nameValue}
-                      onChange={(e) => setNameValue(e.target.value)}
+                      {...register("name", { required: true })}
                       className="cart-order__input"
                       placeholder="Name"
                       type="text"
-                    ></input>
+                    />
+                    {errors.name && <span>This field is required</span>}
                     <input
-                      value={phoneValue}
-                      onChange={(e) => setPhoneValue(e.target.value)}
+                      {...register("phone", {
+                        required: true,
+                        pattern: /^[0-9]{11}$/,
+                      })}
                       className="cart-order__input"
                       placeholder="Phone number"
                       type="tel"
-                    ></input>
+                    />
+                    {errors.phone && (
+                      <span>Please enter a valid phone number (11 digits)</span>
+                    )}
                     <input
-                      value={emailValue}
-                      onChange={(e) => setEmailValue(e.target.value)}
+                      {...register("email", {
+                        required: true,
+                        pattern: /^\S+@\S+$/i,
+                      })}
                       className="cart-order__input"
                       placeholder="Email"
                       type="email"
-                    ></input>
+                    />
+                    {errors.email && (
+                      <span>Please enter a valid email address</span>
+                    )}
                   </div>
-                  <button className={submitted ? 'cart-order__btn cart-order__btn--placed' : "cart-order__btn"}>{submitted ? 'The order is Placed' : 'Order'}</button>
+                  <button
+                    className={
+                      submitted
+                        ? "cart-order__btn cart-order__btn--placed"
+                        : "cart-order__btn"
+                    }
+                  >
+                    {submitted ? "The order is Placed" : "Order"}
+                  </button>
                 </form>
               </div>
             </div>
           )}
-
         </div>
-        
-
-
-
       </section>
 
-      <CartModal modalActive={modalActive} setModalActive={setModalActive}/>           
+      <CartModal modalActive={modalActive} setModalActive={setModalActive} />
     </>
   );
 };
