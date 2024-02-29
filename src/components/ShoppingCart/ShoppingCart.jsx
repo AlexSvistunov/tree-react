@@ -9,6 +9,8 @@ import { getProducts } from "../../store/productsSlice";
 import { deleteProductFromCart } from "../../store/cartSlice";
 import { plusProduct } from "../../store/cartSlice";
 import { minusProduct } from "../../store/cartSlice";
+import CartModal from "../CartModal/CartModal";
+import Modal from 'react-modal'
 
 const ShoppingCart = () => {
   const dispatch = useDispatch();
@@ -26,8 +28,6 @@ const ShoppingCart = () => {
   let [cartListAmount, setCartListAmount] = useState(
     cartList.map((cartListElement) => cartListElement["amount"])
   );
-  console.log(cartListAmount);
-  console.log(totalAmount);
 
   const plusCartAmount = (index) => {
     const updatedCartListAmount = [...cartListAmount];
@@ -45,7 +45,6 @@ const ShoppingCart = () => {
     }
   };
 
-  // СДЕЛАТЬ ЧТОБЫ МОЖНО БЫЛО ПЕРЕЙТИ ПО КАРТОЧКЕ ТОВАРА НАЖАВ НА В КОРЗИНЕ НА LINK
 
   const updatePrice = () => {
     let totalPrice = 0;
@@ -68,10 +67,20 @@ const ShoppingCart = () => {
     dispatch(deleteProductFromCart(productId));
   };
 
+  const [modalIsIOpen, setModalIsOpen] = useState(true)
+
+  const openModal = () => {
+    setModalIsOpen(true);
+  };
+  
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
+
   return (
     <>
       <HeaderBorder />
-      <section className="cart">
+      <section className="cart" style={{position: 'relative'}}>
         <div className="container">
           <div className="cart__inner">
             <div className="wrapper-line cart-wrapper__line">
@@ -201,8 +210,17 @@ const ShoppingCart = () => {
               </div>
             </div>
           )}
+
         </div>
+        
+
+
+
       </section>
+
+      {/* <Modal isOpen={modalIsIOpen} onRequestClose={closeModal}>
+                    {CartModal}
+      </Modal> */}
     </>
   );
 };

@@ -1,7 +1,14 @@
 
 import "./FirstOrder.css";
+import axios from "axios";
+import { URL } from "../../utils/constants";
 
 const FirstOrder = () => {
+  const handleDiscountDiscount = () => {
+    axios.post(`${URL}/sale/send`, {
+      
+    })
+  }
   return (
     <section className="first-order">
       <div className="container">
