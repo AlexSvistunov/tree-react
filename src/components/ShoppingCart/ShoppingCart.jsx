@@ -13,6 +13,7 @@ import CartModal from "../CartModal/CartModal";
 import Modal from 'react-modal'
 
 const ShoppingCart = () => {
+  
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getProducts());
@@ -67,15 +68,8 @@ const ShoppingCart = () => {
     dispatch(deleteProductFromCart(productId));
   };
 
-  const [modalIsIOpen, setModalIsOpen] = useState(true)
+  const [modalActive, setModalActive] = useState(false)
 
-  const openModal = () => {
-    setModalIsOpen(true);
-  };
-  
-  const closeModal = () => {
-    setModalIsOpen(false);
-  };
 
   return (
     <>
@@ -218,9 +212,7 @@ const ShoppingCart = () => {
 
       </section>
 
-      {/* <Modal isOpen={modalIsIOpen} onRequestClose={closeModal}>
-                    {CartModal}
-      </Modal> */}
+      <CartModal modalActive={modalActive} setModalActive={setModalActive}/>           
     </>
   );
 };
