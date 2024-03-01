@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import './Header.css'
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
+import ROUTES from "../../utils/routes";
 
 const HeaderBorder = () => {
   const amount = useSelector(state => state.cart.cartList).length;
@@ -17,7 +18,7 @@ const HeaderBorder = () => {
       >
         <div className="container">
           <div className="header__container">
-            <Link className="logo header__logo" to="/"></Link>
+            <Link className="logo header__logo" to={ROUTES.MAINPAGE}></Link>
 
             <nav className="header__nav">
             <ul className="header__nav-list nav-list list-reset">
@@ -52,7 +53,7 @@ const HeaderBorder = () => {
               </ul>
             </nav>
 
-            <Link to={"/cart"}>
+            <Link to={ROUTES.CART}>
               <div className="cart header__cart">
                 <div className="header__cart-circle" style={!amount ? {opacity: '0'} : {opacity: '1'}}>{amount}</div>
                 <svg

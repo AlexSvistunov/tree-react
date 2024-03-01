@@ -17,8 +17,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 
 
 
-
-
 // newest(updated at) + write this sorting function by myself
 // think about apply filters btn
 // фильтер применяется по цене которая старая если есть скидка
@@ -26,7 +24,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 
 
 //необязательные доработки: (hover, focus, active), всякие спиннеры мб зеленые, read more и когда тайтл не влазиет, название переменных, чистота кода
-// маленькие доработки: checkbox
 //средние доработки:  select, select bug, redirect если продукта нет
 // важные доработки: если ввожу product 101 то падает приложение, а не на 404
 

@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getCategories } from "../../store/categoriesSlice";
 import Category from "./Category";
 import { Link } from "react-router-dom";
+import ROUTES from "../../utils/routes";
 
 const Categories = () => {
   const dispatch = useDispatch();
@@ -22,7 +23,7 @@ const Categories = () => {
             <h2 className="categories__title section-title">Categories</h2>
             <div className="line"></div>
           </div>
-          <Link className="categories__btn" to={"/categories"}>
+          <Link className="categories__btn" to={ROUTES.CATEGORIES}>
             All categories
           </Link>
         </div>
@@ -40,6 +41,5 @@ const Categories = () => {
   );
 };
 
-// передавать какую-то строчку и если она есть, то такой-то класс, если нет - то ничего
 
 export default Categories;

@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getProducts } from "../../store/productsSlice";
+import ROUTES from "../../utils/routes";
 
 const Sale = () => {
   const dispatch = useDispatch()
@@ -25,7 +26,7 @@ const Sale = () => {
             <div className="line"></div>
           </div>
 
-          <Link className="sale__btn" to={'/sales'}>All sales</Link>
+          <Link className="sale__btn" to={ROUTES.ALLSALES}>All sales</Link>
         </div>
         <ul className="sale__list list-reset">
           {sales &&

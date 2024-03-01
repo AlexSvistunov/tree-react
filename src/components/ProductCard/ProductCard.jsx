@@ -4,14 +4,13 @@ import { addProductToCart } from "../../store/cartSlice";
 import { useEffect } from "react";
 import { useState } from "react";
 import './ProductCard.css'
+import ROUTES from "../../utils/routes";
 
 const ProductCard = ({ product, imgSrc }) => {
   const dispatch = useDispatch();
   const cartList = useSelector(state => state.cart.cartList)
  
-
   const addToCart = (id) => {
-    console.log(id);
     const isItemExist = cartList.find(el => el.id === id)
     if(!isItemExist) {
       dispatch(addProductToCart({id, amount: 1}));
@@ -27,13 +26,13 @@ const ProductCard = ({ product, imgSrc }) => {
   const percent = Math.ceil(((discountPrice - price) / price) * 100);
   return (
     <li className="product__list-item product-item">
-      <Link className="product-link" to={`/products/${product.id}`} />
+      <Link className="product-link" to={`${ROUTES.ALLPRODUCTS}/${product.id}`} />
       <div className="product-item__imgbox">
         {discountPrice && (
           <div className="product-item__product">{percent}%</div>
         )}
         <img className="product-item__img" src={imgSrc && imgSrc} height={284}></img>
-        {/* <button className="product-item__btn-cart" onClick={() => addToCart(product.id)}>Add to cart</button> */}
+       
         <button
                 className={cartList.find(el => el.id === product.id) ? 'product-item__btn-cart product-item__btn-cart--incart' : 'product-item__btn-cart' }
                 onClick={() => {

@@ -15,9 +15,9 @@ const SingleProduct = () => {
   const cartList = useSelector((state) => state.cart.cartList);
   console.log(cartList)
   const { id } = useParams();
-  const request = useGetProductQuery(id);
+  const productId = useGetProductQuery(id);
 
-  const data = request.data;
+  const data = productId.data;
   const object = data && data[0];
   useEffect(() => {
     dispatch(getProducts());

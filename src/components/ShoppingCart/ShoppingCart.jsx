@@ -13,6 +13,7 @@ import CartModal from "../CartModal/CartModal";
 import axios from "axios";
 import { URL } from "../../utils/constants";
 import { useForm } from "react-hook-form";
+import ROUTES from "../../utils/routes";
 
 const ShoppingCart = () => {
   const {
@@ -104,7 +105,7 @@ const ShoppingCart = () => {
               <h1 className="cart__title section-title">Shopping cart</h1>
               <div className="line"></div>
             </div>
-            <Link className="cart__btn" to={"/"}>
+            <Link className="cart__btn" to={ROUTES.MAINPAGE}>
               Back to the store
             </Link>
           </div>
@@ -114,7 +115,7 @@ const ShoppingCart = () => {
               <span className="cart__wrapper-no-items">
                 Looks like you have no items in your basket currently.
               </span>
-              <Link className="cart__wrapper-continue" to={"/products"}>
+              <Link className="cart__wrapper-continue" to={ROUTES.ALLPRODUCTS}>
                 Continue Shopping
               </Link>
             </div>
@@ -137,7 +138,7 @@ const ShoppingCart = () => {
                             src={`/backend/public${product.image}`}
                           ></img>
                           <div className="cart-item__info">
-                            <Link to={`/products/${product.id}`}>
+                            <Link to={`${ROUTES.ALLPRODUCTS}/${product.id}`}>
                               <h3 className="cart-item__title">
                                 {product.title}
                               </h3>

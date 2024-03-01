@@ -1,4 +1,3 @@
-
 import { useParams } from "react-router-dom";
 import HeaderBorder from "../Header/HeaderBorder";
 import { useGetCategoryQuery } from "../../store/apiSlice";
@@ -18,17 +17,17 @@ const SingleCategory = () => {
   const [showDiscounted, setShowDiscounted] = useState(false);
   const [sortBy, setSortBy] = useState("by default");
   const [filteredProducts, setFilteredProducts] = useState([]);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getProducts());
   }, [dispatch]);
 
   const { title, id } = useParams();
-  const a = useGetCategoryQuery(id);
-  const data = a?.data?.data;
-
+  const categoryId = useGetCategoryQuery(id);
+  const categoryProducts = categoryId?.data?.data;
+ 
   const applyFilters = ({ priceFrom, priceTo, showDiscounted, sortBy }) => {
-    let updatedProducts = [...data];
+    let updatedProducts = [...categoryProducts];
 
     if (priceFrom && priceTo) {
       updatedProducts = updatedProducts.filter(
@@ -63,9 +62,11 @@ const SingleCategory = () => {
       <HeaderBorder />
       <section className="category">
         <div className="container">
-          <h1 className="category__title section-title">{title.slice(0,1).toUpperCase() + title.slice(1).toLowerCase()}</h1>
+          <h1 className="category__title section-title">
+            {title.slice(0, 1).toUpperCase() + title.slice(1).toLowerCase()}
+          </h1>
 
-          <Sort 
+          <Sort
             applyFilters={applyFilters}
             priceFrom={priceFrom}
             setPriceFrom={setPriceFrom}
@@ -78,25 +79,25 @@ const SingleCategory = () => {
           />
 
           <ul className="product__list list-reset">
-          {filteredProducts.length > 0
-            ? filteredProducts.map((product) => (
-                <ProductCard
-                  key={product.id}
-                  product={product}
-                  imgSrc={`/backend/public${product.image}`}
-                />
-              ))
-            : data && data.map((product) => (
-                <ProductCard
-                  key={product.id}
-                  product={product}
-                  imgSrc={`/backend/public${product.image}`}
-                />
-              ))}
+            {filteredProducts.length > 0
+              ? filteredProducts.map((product) => (
+                  <ProductCard
+                    key={product.id}
+                    product={product}
+                    imgSrc={`/backend/public${product.image}`}
+                  />
+                ))
+              : categoryProducts &&
+              categoryProducts.map((product) => (
+                  <ProductCard
+                    key={product.id}
+                    product={product}
+                    imgSrc={`/backend/public${product.image}`}
+                  />
+                ))}
           </ul>
         </div>
       </section>
-      {/* <ProductCard key={product.id} product={product} imgSrc={`/backend/public${product.image}`}/> */}
       <Contact />
     </>
   );

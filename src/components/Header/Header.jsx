@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import "./Header.css";
+import ROUTES from "../../utils/routes";
 const Header = () => {
   const amount = useSelector(state => state.cart.cartList).length;
   return (
@@ -9,7 +10,7 @@ const Header = () => {
       <header className="header">
         <div className="container">
           <div className="header__container">
-            <NavLink className="logo header__logo" to="/"></NavLink>
+            <NavLink className="logo header__logo" to={ROUTES.MAINPAGE}></NavLink>
 
             <nav className="header__nav">
               <ul className="header__nav-list nav-list list-reset">
@@ -44,7 +45,7 @@ const Header = () => {
               </ul>
             </nav>
 
-            <Link to={"/cart"}>
+            <Link to={ROUTES.CART}>
               <div className="cart header__cart">
               <div className="header__cart-circle" style={!amount ? {opacity: '0'} : {opacity: '1'}}>{amount}</div>
                 <svg

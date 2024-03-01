@@ -1,5 +1,6 @@
 
 import { Link } from "react-router-dom";
+import ROUTES from "../../utils/routes";
 
 const SaleItem = ({product}) => {
   const price = product.price
@@ -7,7 +8,7 @@ const SaleItem = ({product}) => {
   const percent = Math.ceil((((dicontPrice  - price) / price) * 100))
   return (
     <li className="sale__list-item sale-item">
-    <Link className="item-link" to={`/products/${product.id}`}/>
+    <Link className="item-link" to={`${ROUTES.ALLPRODUCTS}/${product.id}`}/>
       <div className="sale-item__imgbox">
         <div className="sale-item__sale">{percent}%</div>
         <img className="sale-item__img" src={`../backend/public${product.image}`} height={284}></img>
