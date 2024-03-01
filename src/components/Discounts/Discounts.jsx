@@ -2,6 +2,7 @@ import React from "react";
 import Button from "../Button/Button";
 import "./Discounts.css";
 import { Link } from "react-router-dom";
+import ROUTES from "../../utils/routes";
 const Discounts = () => {
   return (
     <section className="discounts">
@@ -11,7 +12,7 @@ const Discounts = () => {
             Amazing Discounts on Garden Products!
           </h1>
 
-          <Link className="discounts__link" to={'/products'}>Check out</Link>
+          <Link className="discounts__link" to={ROUTES.ALLPRODUCTS}>Check out</Link>
         </div>
       </div>
     </section>

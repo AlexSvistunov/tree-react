@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import "./NotFound.css";
+import ROUTES from "../../utils/routes";
 const NotFound = () => {
   return (
     <>
@@ -13,7 +14,7 @@ const NotFound = () => {
               back to the homepage.
             </p>
 
-            <Link className="not-found__link" to={'/'}>Go home</Link>
+            <Link className="not-found__link" to={ROUTES.MAINPAGE}>Go home</Link>
           </div>
         </div>
       </section>
