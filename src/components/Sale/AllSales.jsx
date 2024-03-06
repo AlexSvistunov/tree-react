@@ -36,7 +36,7 @@ const AllSales = () => {
 
     switch (sortBy) {
       case "newest":
-        updatedProducts.sort((a, b) => b.date - a.date);
+        updatedProducts.sort((a, b) => new Date(b['updatedAt']) - new Date(a['updatedAt']));
         break;
       case "price_high_low":
         updatedProducts.sort((a, b) => b.price - a.price);

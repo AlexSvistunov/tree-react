@@ -17,7 +17,8 @@ const Products = () => {
   const [filteredProducts, setFilteredProducts] = useState([]);
   useFetchProducts()
   const productsList = useSelector((state) => state.products.productsList);
-  
+  console.log(productsList);
+
   const applyFilters = ({ priceFrom, priceTo, showDiscounted, sortBy }) => {
     let updatedProducts = [...productsList];
 
@@ -32,10 +33,9 @@ const Products = () => {
         (product) => product["discont_price"]
       );
     }
-
     switch (sortBy) {
       case "newest":
-        updatedProducts.sort((a, b) => b.date - a.date);
+        updatedProducts.sort((a, b) => new Date(b['updatedAt']) - new Date(a['updatedAt']));
         break;
       case "price_high_low":
         updatedProducts.sort((a, b) => b.price - a.price);

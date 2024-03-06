@@ -30,3 +30,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 //нет синхронизации с корзины в singleProduct количество, так как там по умолчанию 1
 // хранение в localStorage или redux библиотека, или вообще ничего не делать так как нет авторизации
 
+// localStorage
+// sort newest
+
