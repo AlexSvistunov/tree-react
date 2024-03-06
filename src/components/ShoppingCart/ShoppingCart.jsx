@@ -35,7 +35,6 @@ const ShoppingCart = () => {
         cartList: cartList,
       })
       .then((response) => {
-        console.log(response);
         if (response.status === 200) {
           setSubmitted(true);
           setModalActive(true);
@@ -78,8 +77,6 @@ const ShoppingCart = () => {
         allProducts &&
         allProducts.find((product) => product.id === cartItem.id);
       const amount = cartItem.amount;
-      console.log(amount);
-      console.log(cartItem);
       totalPrice +=
         (item["discont_price"] ? item["discont_price"] : item.price) * amount;
       if (cartItem.amount <= 0) {

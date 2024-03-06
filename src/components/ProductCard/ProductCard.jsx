@@ -17,7 +17,7 @@ const ProductCard = ({ product, imgSrc }) => {
       return
     }
   };
-  const {price} = product.price;
+  const price = product.price;
   const discountPrice = product["discont_price"];
   const percent = Math.ceil(((discountPrice - price) / price) * 100);
   return (

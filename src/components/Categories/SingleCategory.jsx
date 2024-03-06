@@ -15,7 +15,6 @@ const SingleCategory = () => {
   const [sortBy, setSortBy] = useState("by default");
   const [filteredProducts, setFilteredProducts] = useState([]);
   useFetchProducts()
-
   const { title, id } = useParams();
   const categoryId = useGetCategoryQuery(id);
   const categoryProducts = categoryId?.data?.data;

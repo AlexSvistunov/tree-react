@@ -2,10 +2,17 @@
 import "./Categories.css";
 import { useSelector } from "react-redux";
 import Category from "./Category";
-import useFetchProducts from "../../hooks/useFetchProducts";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { getCategories } from "../../store/categoriesSlice";
 
 const AllCategories = () => {
-  useFetchProducts()
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(getCategories())
+  }, [dispatch])
+  
   const categoriesList = useSelector(state => state.categories.categoriesList)
   return (
     <section className="categories" style={{paddingTop: 0}}>
