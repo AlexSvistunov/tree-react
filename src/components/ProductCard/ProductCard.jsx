@@ -1,8 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { addProductToCart } from "../../store/cartSlice";
-import { useEffect } from "react";
-import { useState } from "react";
 import './ProductCard.css'
 import ROUTES from "../../utils/routes";
 
@@ -18,10 +16,8 @@ const ProductCard = ({ product, imgSrc }) => {
     } else {
       return
     }
-
   };
-
-  const price = product.price;
+  const {price} = product.price;
   const discountPrice = product["discont_price"];
   const percent = Math.ceil(((discountPrice - price) / price) * 100);
   return (

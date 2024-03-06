@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { filterByPriceRange, getProducts } from "../../store/productsSlice";
 import { filterByDiscounted } from "../../store/productsSlice";
 import Contact from "../Contact/Contact";
+import useFetchProducts from "../../hooks/useFetchProducts";
 
 const Products = () => {
   const [priceFrom, setPriceFrom] = useState("");
@@ -14,14 +15,9 @@ const Products = () => {
   const [showDiscounted, setShowDiscounted] = useState(false);
   const [sortBy, setSortBy] = useState("by default");
   const [filteredProducts, setFilteredProducts] = useState([]);
-
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getProducts());
-  }, [dispatch]);
-
+  useFetchProducts()
   const productsList = useSelector((state) => state.products.productsList);
-
+  
   const applyFilters = ({ priceFrom, priceTo, showDiscounted, sortBy }) => {
     let updatedProducts = [...productsList];
 

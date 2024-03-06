@@ -14,6 +14,7 @@ import axios from "axios";
 import { URL } from "../../utils/constants";
 import { useForm } from "react-hook-form";
 import ROUTES from "../../utils/routes";
+import useFetchProducts from "../../hooks/useFetchProducts";
 
 const ShoppingCart = () => {
   const {
@@ -24,6 +25,7 @@ const ShoppingCart = () => {
   const [submitted, setSubmitted] = useState(false);
   const [modalActive, setModalActive] = useState(false);
 
+  const dispatch = useDispatch()
   const onSubmit = (data) => {
     axios
       .post(`${URL}/order/send`, {
@@ -42,11 +44,7 @@ const ShoppingCart = () => {
       .catch((error) => console.log(error));
   };
 
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getProducts());
-  }, [dispatch]);
-  const allProducts = useSelector((state) => state.products.productsList);
+  const allProducts = useFetchProducts()
   const cartList = useSelector((state) => state.cart.cartList);
   useEffect(() => {
     updatePrice();

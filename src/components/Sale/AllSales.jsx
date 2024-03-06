@@ -6,6 +6,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getProducts } from "../../store/productsSlice";
+import useFetchProducts from "../../hooks/useFetchProducts";
 
 const AllSales = () => {
   const [priceFrom, setPriceFrom] = useState("");
@@ -13,10 +14,7 @@ const AllSales = () => {
   const [sortBy, setSortBy] = useState("by default");
   const [filteredProducts, setFilteredProducts] = useState([]);
   const dispatch = useDispatch()
-  useEffect(() => {
-    dispatch(getProducts());
-  }, [dispatch]);
-
+  const allProducts = useFetchProducts()
   const query = useGetProductsQuery();
   const data = query && query.data;
   const sales = data && data.filter((product) => product["discont_price"]);

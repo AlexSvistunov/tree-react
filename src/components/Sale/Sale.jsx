@@ -7,13 +7,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getProducts } from "../../store/productsSlice";
 import ROUTES from "../../utils/routes";
+import useFetchProducts from "../../hooks/useFetchProducts";
 
 const Sale = () => {
   const dispatch = useDispatch()
-  useEffect(() => {
-    dispatch(getProducts());
-  }, [dispatch]);
-  const allProducts = useSelector((state) => state.products.productsList);
+  const allProducts = useFetchProducts()
   const query = useGetProductsQuery();
   const data = query && query.data;
   const sales = data && data.filter((product) => product["discont_price"]);

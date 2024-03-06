@@ -16,8 +16,6 @@ const Sort = ({
     applyFilters({ priceFrom, priceTo, showDiscounted, sortBy });
   };
 
-  console.log(showDiscounted);
-
   return (
     <div className="sort">
       <label>

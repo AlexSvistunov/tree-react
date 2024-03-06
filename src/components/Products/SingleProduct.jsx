@@ -8,30 +8,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { useEffect } from "react";
 import { getProducts } from "../../store/productsSlice";
+import useFetchProducts from "../../hooks/useFetchProducts";
 
 const SingleProduct = () => {
   let [amount, setAmount] = useState(1);
   const dispatch = useDispatch();
   const cartList = useSelector((state) => state.cart.cartList);
-  console.log(cartList)
   const { id } = useParams();
   const productId = useGetProductQuery(id);
-
   const data = productId.data;
   const object = data && data[0];
-  useEffect(() => {
-    dispatch(getProducts());
-  }, [dispatch]);
-
-  // const productsList = useSelector((state) => state.products.productsList)
-  
-  // const product = productsList.find(el => el.id === id);
-
-  // if (!product) {
-  //   return <Redirect to="/404" />;
-  // }
-
-  
+  useFetchProducts()
 
   const addToCart = (id) => {
     const isItemExist = cartList.find((el) => el === id);

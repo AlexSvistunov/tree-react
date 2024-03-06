@@ -3,13 +3,10 @@ import HeaderBorder from "../Header/HeaderBorder";
 import { useGetCategoryQuery } from "../../store/apiSlice";
 import "../Sale/Sale.css";
 import Contact from "../Contact/Contact";
-import { Link } from "react-router-dom";
 import ProductCard from "../ProductCard/ProductCard";
 import Sort from "../Sort/Sort";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { useEffect } from "react";
-import { getProducts } from "../../store/productsSlice";
+import useFetchProducts from "../../hooks/useFetchProducts";
 
 const SingleCategory = () => {
   const [priceFrom, setPriceFrom] = useState("");
@@ -17,10 +14,7 @@ const SingleCategory = () => {
   const [showDiscounted, setShowDiscounted] = useState(false);
   const [sortBy, setSortBy] = useState("by default");
   const [filteredProducts, setFilteredProducts] = useState([]);
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getProducts());
-  }, [dispatch]);
+  useFetchProducts()
 
   const { title, id } = useParams();
   const categoryId = useGetCategoryQuery(id);
