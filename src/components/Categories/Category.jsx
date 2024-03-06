@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 const Category = ({ category }) => {
   const categoryLink = category.title.toLowerCase().split('').filter(letter => letter !== ' ').join('')
 

@@ -1,11 +1,8 @@
-import { useDispatch, useSelector } from "react-redux";
-import { useGetProductsQuery } from "../../store/apiSlice";
+import {useSelector } from "react-redux";
 import ProductCard from "../ProductCard/ProductCard";
 import Sort from "../Sort/Sort";
 import "./Products.css";
-import { useEffect, useState } from "react";
-import { filterByPriceRange, getProducts } from "../../store/productsSlice";
-import { filterByDiscounted } from "../../store/productsSlice";
+import { useState } from "react";;
 import Contact from "../Contact/Contact";
 import useFetchProducts from "../../hooks/useFetchProducts";
 

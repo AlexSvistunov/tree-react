@@ -5,7 +5,6 @@ import "./ShoppingCart.css";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import { getProducts } from "../../store/productsSlice";
 import { deleteProductFromCart } from "../../store/cartSlice";
 import { plusProduct } from "../../store/cartSlice";
 import { minusProduct } from "../../store/cartSlice";

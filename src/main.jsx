@@ -31,5 +31,4 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 // хранение в localStorage или redux библиотека, или вообще ничего не делать так как нет авторизации
 
 // localStorage
-// sort newest
 
